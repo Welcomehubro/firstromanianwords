@@ -41,8 +41,8 @@
   }
   .brand img{
     display:block;
-    width:390px;
-    max-width:60%;
+    width:430px;
+    max-width:68%;
     height:auto;
     align-self:flex-start;
     transform:translateY(-40px);
@@ -159,7 +159,9 @@
     gap:7px;
     margin-bottom:18px;
   }
-  .letter-btn{
+  .letter-tile{
+    display:grid;
+    place-items:center;
     min-height:48px;
     border:1px solid var(--line);
     border-radius:9px;
@@ -167,9 +169,7 @@
     color:var(--ink);
     font-size:1.08rem;
     font-weight:700;
-    cursor:pointer;
   }
-  .letter-btn:hover,.letter-btn.playing{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark)}
   .special-title{margin:6px 0 10px;font-size:1.05rem}
   .special-grid{display:grid;gap:10px}
   .special-card{
@@ -192,31 +192,20 @@
     font-size:2rem;
     font-weight:800;
   }
+  .special-letter.double{font-size:1.25rem;line-height:1.15;text-align:center}
   .special-copy h3{margin:0 0 3px;font-size:1rem}
   .special-copy p{margin:3px 0;color:var(--muted);font-size:.86rem}
   .romanian-examples{color:var(--ink)!important;font-weight:650}
-  .sound-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
-  .sound-btn{
-    min-height:42px;
-    padding:8px 11px;
-    border:1px solid var(--accent);
-    border-radius:9px;
-    background:#fff;
-    color:var(--accent-dark);
-    font-weight:700;
-    cursor:pointer;
-  }
-  .sound-btn.primary,.sound-btn.playing{background:var(--accent);color:#fff}
   .noscript{padding:12px;border-radius:10px;background:#fff2cd;color:#5f4a00}
   @media (min-width:600px){
     .controls{grid-template-columns:repeat(3,1fr);align-items:start}
   }
   @media (max-width:420px){
     body{padding:18px 12px 48px}
-    .brand{width:100%;height:58px;margin-bottom:10px}
+    .brand{width:100%;height:66px;margin-bottom:10px}
     .brand img{
-      width:58%;
-      max-width:58%;
+      width:68%;
+      max-width:68%;
       transform:translateY(-22%);
     }
     .special-card{grid-template-columns:52px 1fr;gap:10px;padding:12px}
@@ -401,21 +390,26 @@
 
   <section class="alphabet-section" aria-labelledby="alphabetTitle">
     <h2 class="section-title" id="alphabetTitle" data-ui="alphabetTitle">Alfabetul românesc</h2>
-    <p class="section-intro" data-ui="alphabetIntro">Alfabetul românesc are 31 de litere. Apasă pe o literă pentru a-i auzi numele în limba română.</p>
+    <p class="section-intro" data-ui="alphabetIntro">Alfabetul românesc are 31 de litere. Pronunția literelor poate fi auzită în cuvintele și expresiile din lista de mai jos.</p>
     <div class="alphabet-grid" id="alphabetGrid" aria-label="Alfabetul românesc"></div>
 
-    <h3 class="special-title" data-ui="specialLettersTitle">Literele Ă, Ș și Ț</h3>
+    <h3 class="special-title" data-ui="specialLettersTitle">Litere specifice limbii române</h3>
     <div class="special-grid">
       <article class="special-card">
         <div class="special-letter" lang="ro">Ă ă</div>
         <div class="special-copy">
           <h3 data-ui="aBreveTitle">Litera Ă — sunetul „ă”</h3>
-          <p data-ui="aBreveText">Este un sunet vocalic scurt și neutru. Pentru exercițiu îl prelungim, apoi îl ascultăm în cuvinte.</p>
+          <p data-ui="aBreveText">Ă este o vocală diferită de A. Apare în cuvinte precum „măr”, „apă” și „bună”. Ascultă aceste litere în cuvintele de mai jos.</p>
           <p class="romanian-examples" lang="ro">măr · apă · bună</p>
-          <div class="sound-actions">
-            <button type="button" class="sound-btn primary special-sound" data-sound="ăăă" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
-            <button type="button" class="sound-btn special-examples" data-examples="măr|apă|bună" data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
-          </div>
+        </div>
+      </article>
+
+      <article class="special-card">
+        <div class="special-letter double" lang="ro">Â â<br>Î î</div>
+        <div class="special-copy">
+          <h3 data-ui="circumflexTitle">Literele Â și Î — același sunet</h3>
+          <p data-ui="circumflexText">Â și Î se pronunță la fel, dar se scriu în poziții diferite. Î apare de obicei la începutul sau la sfârșitul cuvântului, iar Â apare în interior.</p>
+          <p class="romanian-examples" lang="ro">înțeleg · română · când</p>
         </div>
       </article>
 
@@ -423,12 +417,8 @@
         <div class="special-letter" lang="ro">Ș ș</div>
         <div class="special-copy">
           <h3 data-ui="sCommaTitle">Litera Ș — sunetul „ș”</h3>
-          <p data-ui="sCommaText">Este un sunet continuu, ca „sh” din engleză. Aerul curge fără ca vocea să vibreze.</p>
+          <p data-ui="sCommaText">Ș este diferit de S. Se apropie de grupul „sh” din engleză și apare în cuvinte precum „șapte”, „ușă” și „mașină”.</p>
           <p class="romanian-examples" lang="ro">șapte · ușă · mașină</p>
-          <div class="sound-actions">
-            <button type="button" class="sound-btn primary special-sound" data-sound="șșș" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
-            <button type="button" class="sound-btn special-examples" data-examples="șapte|ușă|mașină" data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
-          </div>
         </div>
       </article>
 
@@ -436,12 +426,8 @@
         <div class="special-letter" lang="ro">Ț ț</div>
         <div class="special-copy">
           <h3 data-ui="tCommaTitle">Litera Ț — sunetul „ț”</h3>
-          <p data-ui="tCommaText">Este un sunet scurt, asemănător grupului „ts”. Nu poate fi prelungit natural, de aceea îl repetăm rar și clar.</p>
+          <p data-ui="tCommaText">Ț este diferit de T. Se apropie de grupul „ts” și apare în cuvinte precum „țară”, „față” și „mulțumesc”.</p>
           <p class="romanian-examples" lang="ro">țară · față · mulțumesc</p>
-          <div class="sound-actions">
-            <button type="button" class="sound-btn primary special-sound" data-sound="ț" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
-            <button type="button" class="sound-btn special-examples" data-examples="țară|față|mulțumesc" data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
-          </div>
         </div>
       </article>
     </div>
@@ -545,15 +531,17 @@ const UI_RO = {
   slower:"Mai lent",
   faster:"Mai rapid",
   alphabetTitle:"Alfabetul românesc",
-  alphabetIntro:"Alfabetul românesc are 31 de litere. Apasă pe o literă pentru a-i auzi numele în limba română.",
+  alphabetIntro:"Alfabetul românesc are 31 de litere. Pronunția literelor poate fi auzită în cuvintele și expresiile din lista de mai jos.",
   alphabetAria:"Alfabetul românesc",
-  specialLettersTitle:"Literele Ă, Ș și Ț",
+  specialLettersTitle:"Litere specifice limbii române",
   aBreveTitle:"Litera Ă — sunetul «ă»",
-  aBreveText:"Este un sunet vocalic scurt și neutru. Pentru exercițiu îl prelungim, apoi îl ascultăm în cuvinte.",
+  aBreveText:"Ă este o vocală diferită de A. Apare în cuvinte precum «măr», «apă» și «bună». Ascultă aceste litere în cuvintele de mai jos.",
+  circumflexTitle:"Literele Â și Î — același sunet",
+  circumflexText:"Â și Î se pronunță la fel, dar se scriu în poziții diferite. Î apare de obicei la începutul sau la sfârșitul cuvântului, iar Â apare în interior.",
   sCommaTitle:"Litera Ș — sunetul «ș»",
-  sCommaText:"Este un sunet continuu, ca «sh» din engleză. Aerul curge fără ca vocea să vibreze.",
+  sCommaText:"Ș este diferit de S. Se apropie de grupul «sh» din engleză și apare în cuvinte precum «șapte», «ușă» și «mașină».",
   tCommaTitle:"Litera Ț — sunetul «ț»",
-  tCommaText:"Este un sunet scurt, asemănător grupului «ts». Nu poate fi prelungit natural, de aceea îl repetăm rar și clar.",
+  tCommaText:"Ț este diferit de T. Se apropie de grupul «ts» și apare în cuvinte precum «țară», «față» și «mulțumesc».",
   listenSound:"Ascultă sunetul",
   listenExamples:"Ascultă în cuvinte",
   hearLetter:"Ascultă litera",
@@ -598,15 +586,17 @@ const UI_EN = {
   slower:"Slower",
   faster:"Faster",
   alphabetTitle:"The Romanian alphabet",
-  alphabetIntro:"The Romanian alphabet has 31 letters. Tap a letter to hear its name in Romanian.",
+  alphabetIntro:"The Romanian alphabet has 31 letters. You can hear their pronunciation in the words and phrases listed below.",
   alphabetAria:"The Romanian alphabet",
-  specialLettersTitle:"The letters Ă, Ș and Ț",
+  specialLettersTitle:"Letters specific to Romanian",
   aBreveTitle:"The letter Ă — the «ă» sound",
-  aBreveText:"This is a short, neutral vowel sound. For practice, we lengthen it and then listen to it in words.",
+  aBreveText:"Ă is a different vowel from A. It appears in words such as «măr», «apă» and «bună». Listen for these letters in the words below.",
+  circumflexTitle:"The letters Â and Î — the same sound",
+  circumflexText:"Â and Î are pronounced in the same way but are written in different positions. Î usually appears at the beginning or end of a word, while Â appears inside it.",
   sCommaTitle:"The letter Ș — the «ș» sound",
-  sCommaText:"This is a continuous sound, like «sh» in English. Air flows without the voice vibrating.",
+  sCommaText:"Ș is different from S. It is similar to «sh» in English and appears in words such as «șapte», «ușă» and «mașină».",
   tCommaTitle:"The letter Ț — the «ț» sound",
-  tCommaText:"This is a short sound, similar to «ts». It cannot be lengthened naturally, so we repeat it slowly and clearly.",
+  tCommaText:"Ț is different from T. It is similar to «ts» and appears in words such as «țară», «față» and «mulțumesc».",
   listenSound:"Listen to the sound",
   listenExamples:"Listen in words",
   hearLetter:"Listen to the letter",
@@ -637,11 +627,11 @@ const UI_EN = {
 };
 
 const alphabet = [
-  ["A","a"],["Ă","ă"],["Â","î"],["B","be"],["C","ce"],["D","de"],
-  ["E","e"],["F","ef"],["G","ge"],["H","haș"],["I","i"],["Î","î"],
-  ["J","je"],["K","ca"],["L","el"],["M","em"],["N","en"],["O","o"],
-  ["P","pe"],["Q","chiu"],["R","er"],["S","es"],["Ș","șe"],["T","te"],
-  ["Ț","țe"],["U","u"],["V","ve"],["W","dublu ve"],["X","ics"],["Y","igrec"],["Z","zet"]
+  ["A","a"],["Ă","ă"],["Â","î"],["B","bî"],["C","cî"],["D","dî"],
+  ["E","e"],["F","fî"],["G","gî"],["H","hî"],["I","i"],["Î","î"],
+  ["J","jî"],["K","cî"],["L","lî"],["M","mî"],["N","nî"],["O","o"],
+  ["P","pî"],["Q","cî"],["R","rî"],["S","sî"],["Ș","șî"],["T","tî"],
+  ["Ț","țî"],["U","u"],["V","vî"],["W","vî"],["X","xî"],["Y","i"],["Z","zî"]
 ];
 
 const items = groups.flatMap(group => group.items.map(item => ({ro:item[0],syllables:item[1],en:item[2]})));
@@ -706,21 +696,12 @@ function renderList(){
 
 function renderAlphabet(){
   const grid = document.getElementById("alphabetGrid");
-  alphabet.forEach(([letter,name]) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "letter-btn";
-    button.textContent = letter;
-    button.lang = "ro";
-    button.setAttribute("aria-label",`${currentUi.hearLetter}: ${letter}`);
-    button.addEventListener("click",() => speakText(name,button,0.56));
-    grid.appendChild(button);
-  });
-  document.querySelectorAll(".special-sound").forEach(button => {
-    button.addEventListener("click",() => speakSequence([button.dataset.sound,button.dataset.sound,button.dataset.sound],button,0.42,320));
-  });
-  document.querySelectorAll(".special-examples").forEach(button => {
-    button.addEventListener("click",() => speakSequence(button.dataset.examples.split("|"),button,0.46,650));
+  alphabet.forEach(([letter]) => {
+    const tile = document.createElement("span");
+    tile.className = "letter-tile";
+    tile.textContent = letter;
+    tile.lang = "ro";
+    grid.appendChild(tile);
   });
 }
 
@@ -886,9 +867,6 @@ function applyUi(ui,lang){
   document.querySelectorAll("[data-ui-aria]").forEach(element => {
     element.setAttribute("aria-label",ui[element.dataset.uiAria]);
   });
-  document.querySelectorAll(".letter-btn").forEach((button,index) => {
-    button.setAttribute("aria-label",`${ui.hearLetter}: ${alphabet[index][0]}`);
-  });
   document.getElementById("asiaGroup").label = ui.asiaGroup;
   document.getElementById("africaGroup").label = ui.africaGroup;
   voiceSelect.dir = "ltr";
@@ -913,7 +891,7 @@ function updateLanguageSummary(){
   summary.textContent = `${currentUi.availableLanguages} (${langSelect.options.length})`;
 }
 
-function cacheKey(lang){ return `firstRomanianWords.translation.v7.${lang}`; }
+function cacheKey(lang){ return `firstRomanianWords.translation.v8.${lang}`; }
 
 async function fetchTranslation(text,targetLang){
   const brandToken = "ZXQWELCOMEHUBQXZ";
