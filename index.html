@@ -404,7 +404,7 @@
     <p class="section-intro" data-ui="alphabetIntro">Alfabetul românesc are 31 de litere. Apasă pe o literă pentru a-i auzi numele în limba română.</p>
     <div class="alphabet-grid" id="alphabetGrid" aria-label="Alfabetul românesc"></div>
 
-    <h3 class="special-title" data-ui="specialLettersTitle">Cum recunoști literele speciale</h3>
+    <h3 class="special-title" data-ui="specialLettersTitle">Literele Ă, Ș și Ț</h3>
     <div class="special-grid">
       <article class="special-card">
         <div class="special-letter" lang="ro">Ă ă</div>
@@ -413,8 +413,8 @@
           <p data-ui="aBreveText">Este un sunet vocalic scurt și neutru. Pentru exercițiu îl prelungim, apoi îl ascultăm în cuvinte.</p>
           <p class="romanian-examples" lang="ro">măr · apă · bună</p>
           <div class="sound-actions">
-            <button type="button" class="sound-btn primary special-sound" data-sound="ăăăă" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
-            <button type="button" class="sound-btn special-examples" data-examples="măr. apă. bună." data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
+            <button type="button" class="sound-btn primary special-sound" data-sound="ăăă" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
+            <button type="button" class="sound-btn special-examples" data-examples="măr|apă|bună" data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
           </div>
         </div>
       </article>
@@ -426,8 +426,8 @@
           <p data-ui="sCommaText">Este un sunet continuu, ca „sh” din engleză. Aerul curge fără ca vocea să vibreze.</p>
           <p class="romanian-examples" lang="ro">șapte · ușă · mașină</p>
           <div class="sound-actions">
-            <button type="button" class="sound-btn primary special-sound" data-sound="șșșș" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
-            <button type="button" class="sound-btn special-examples" data-examples="șapte. ușă. mașină." data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
+            <button type="button" class="sound-btn primary special-sound" data-sound="șșș" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
+            <button type="button" class="sound-btn special-examples" data-examples="șapte|ușă|mașină" data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
           </div>
         </div>
       </article>
@@ -439,8 +439,8 @@
           <p data-ui="tCommaText">Este un sunet scurt, asemănător grupului „ts”. Nu poate fi prelungit natural, de aceea îl repetăm rar și clar.</p>
           <p class="romanian-examples" lang="ro">țară · față · mulțumesc</p>
           <div class="sound-actions">
-            <button type="button" class="sound-btn primary special-sound" data-sound="ță, ță, ță" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
-            <button type="button" class="sound-btn special-examples" data-examples="țară. față. mulțumesc." data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
+            <button type="button" class="sound-btn primary special-sound" data-sound="ț" data-ui-aria="listenSound"><span aria-hidden="true">🔊</span> <span data-ui="listenSound">Ascultă sunetul</span></button>
+            <button type="button" class="sound-btn special-examples" data-examples="țară|față|mulțumesc" data-ui-aria="listenExamples"><span aria-hidden="true">▶</span> <span data-ui="listenExamples">Ascultă în cuvinte</span></button>
           </div>
         </div>
       </article>
@@ -547,7 +547,7 @@ const UI_RO = {
   alphabetTitle:"Alfabetul românesc",
   alphabetIntro:"Alfabetul românesc are 31 de litere. Apasă pe o literă pentru a-i auzi numele în limba română.",
   alphabetAria:"Alfabetul românesc",
-  specialLettersTitle:"Cum recunoști literele speciale",
+  specialLettersTitle:"Literele Ă, Ș și Ț",
   aBreveTitle:"Litera Ă — sunetul «ă»",
   aBreveText:"Este un sunet vocalic scurt și neutru. Pentru exercițiu îl prelungim, apoi îl ascultăm în cuvinte.",
   sCommaTitle:"Litera Ș — sunetul «ș»",
@@ -600,7 +600,7 @@ const UI_EN = {
   alphabetTitle:"The Romanian alphabet",
   alphabetIntro:"The Romanian alphabet has 31 letters. Tap a letter to hear its name in Romanian.",
   alphabetAria:"The Romanian alphabet",
-  specialLettersTitle:"How to recognise the special letters",
+  specialLettersTitle:"The letters Ă, Ș and Ț",
   aBreveTitle:"The letter Ă — the «ă» sound",
   aBreveText:"This is a short, neutral vowel sound. For practice, we lengthen it and then listen to it in words.",
   sCommaTitle:"The letter Ș — the «ș» sound",
@@ -637,8 +637,8 @@ const UI_EN = {
 };
 
 const alphabet = [
-  ["A","a"],["Ă","ă"],["Â","î din a"],["B","be"],["C","ce"],["D","de"],
-  ["E","e"],["F","ef"],["G","ge"],["H","haș"],["I","i"],["Î","î din i"],
+  ["A","a"],["Ă","ă"],["Â","î"],["B","be"],["C","ce"],["D","de"],
+  ["E","e"],["F","ef"],["G","ge"],["H","haș"],["I","i"],["Î","î"],
   ["J","je"],["K","ca"],["L","el"],["M","em"],["N","en"],["O","o"],
   ["P","pe"],["Q","chiu"],["R","er"],["S","es"],["Ș","șe"],["T","te"],
   ["Ț","țe"],["U","u"],["V","ve"],["W","dublu ve"],["X","ics"],["Y","igrec"],["Z","zet"]
@@ -661,6 +661,7 @@ let isSyllableMode = false;
 let translationRequest = 0;
 let activeButton = null;
 let currentUi = UI_RO;
+let speechRun = 0;
 
 function renderList(){
   groups.forEach(group => {
@@ -712,18 +713,19 @@ function renderAlphabet(){
     button.textContent = letter;
     button.lang = "ro";
     button.setAttribute("aria-label",`${currentUi.hearLetter}: ${letter}`);
-    button.addEventListener("click",() => speakText(name,button,0.7));
+    button.addEventListener("click",() => speakText(name,button,0.56));
     grid.appendChild(button);
   });
   document.querySelectorAll(".special-sound").forEach(button => {
-    button.addEventListener("click",() => speakText(button.dataset.sound,button,0.5));
+    button.addEventListener("click",() => speakSequence([button.dataset.sound,button.dataset.sound,button.dataset.sound],button,0.42,320));
   });
   document.querySelectorAll(".special-examples").forEach(button => {
-    button.addEventListener("click",() => speakText(button.dataset.examples,button,0.62));
+    button.addEventListener("click",() => speakSequence(button.dataset.examples.split("|"),button,0.46,650));
   });
 }
 
 function setMode(syllables){
+  speechRun++;
   window.speechSynthesis.cancel();
   stopPlaying();
   isSyllableMode = syllables;
@@ -791,17 +793,47 @@ function stopPlaying(){
 }
 
 function speakText(text,button,rate){
+  const run = ++speechRun;
   window.speechSynthesis.cancel();
   stopPlaying();
   activeButton = button;
   button.classList.add("playing");
   const utterance = makeUtterance(text.toLocaleLowerCase("ro-RO"),rate);
-  utterance.onend = stopPlaying;
-  utterance.onerror = stopPlaying;
+  utterance.onend = () => { if(run === speechRun) stopPlaying(); };
+  utterance.onerror = () => { if(run === speechRun) stopPlaying(); };
   window.speechSynthesis.speak(utterance);
 }
 
+function speakSequence(parts,button,rate,pauseMs){
+  const run = ++speechRun;
+  window.speechSynthesis.cancel();
+  stopPlaying();
+  activeButton = button;
+  button.classList.add("playing");
+  let index = 0;
+
+  function playNext(){
+    if(run !== speechRun) return;
+    if(index >= parts.length){
+      stopPlaying();
+      return;
+    }
+    const utterance = makeUtterance(parts[index].toLocaleLowerCase("ro-RO"),rate);
+    index++;
+    utterance.onend = () => {
+      if(run === speechRun) window.setTimeout(playNext,pauseMs);
+    };
+    utterance.onerror = () => {
+      if(run === speechRun) stopPlaying();
+    };
+    window.speechSynthesis.speak(utterance);
+  }
+
+  playNext();
+}
+
 function speakItem(item,button){
+  speechRun++;
   window.speechSynthesis.cancel();
   stopPlaying();
   activeButton = button;
@@ -881,7 +913,7 @@ function updateLanguageSummary(){
   summary.textContent = `${currentUi.availableLanguages} (${langSelect.options.length})`;
 }
 
-function cacheKey(lang){ return `firstRomanianWords.translation.v6.${lang}`; }
+function cacheKey(lang){ return `firstRomanianWords.translation.v7.${lang}`; }
 
 async function fetchTranslation(text,targetLang){
   const brandToken = "ZXQWELCOMEHUBQXZ";
