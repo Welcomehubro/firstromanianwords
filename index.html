@@ -10,7 +10,7 @@
     --ink:#1c1c1a;
     --muted:#68665f;
     --line:#e5e2da;
-    --accent:#c1272d; /* roșu steag */
+    --accent:#c1272d;
     --accent-dark:#961f24;
     --card:#ffffff;
   }
@@ -46,6 +46,46 @@
     font-size:0.92rem;
   }
   details ol{margin:10px 0 4px;padding-left:20px;font-size:0.9rem;color:var(--muted);}
+
+  .translate-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:14px;
+  }
+  .translate-box .label{
+    font-weight:600;
+    font-size:0.92rem;
+    margin-bottom:10px;
+    display:block;
+  }
+  .translate-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .translate-row select{
+    flex:1 1 180px;
+    padding:9px 10px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#fff;
+    font-size:0.95rem;
+  }
+  .translate-row button{
+    flex:0 0 auto;
+    padding:9px 16px;
+    border-radius:8px;
+    border:none;
+    background:var(--accent);
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+  }
+  .translate-row button:hover{background:var(--accent-dark);}
+  .translate-note{font-size:0.78rem;color:var(--muted);margin-top:8px;}
 
   .controls{
     background:var(--card);
@@ -90,7 +130,9 @@
     border-radius:10px;
     padding:12px 14px;
   }
+  .word-text-wrap{display:flex;flex-direction:column;gap:2px;}
   .word-text{font-size:1.05rem;}
+  .word-translation{font-size:0.85rem;color:var(--muted);}
   .play-btn{
     flex:0 0 auto;
     width:42px;
@@ -126,7 +168,34 @@
 <div class="wrap">
 
   <h1>🇷🇴 Cuvinte și expresii în limba română</h1>
-  <p class="sub">Apasă pe butonul roșu pentru a asculta pronunția fiecărui cuvânt sau a fiecărei expresii.</p>
+  <p class="sub">Apasă pe butonul roșu pentru a asculta pronunția. Sub fiecare expresie găsești traducerea în engleză.</p>
+
+  <div class="translate-box">
+    <span class="label">🌍 Translate this page / Tradu această pagină</span>
+    <div class="translate-row">
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="it">Italiano</option>
+        <option value="pt">Português</option>
+        <option value="tr">Türkçe</option>
+        <option value="ar">العربية</option>
+        <option value="hi">हिन्दी</option>
+        <option value="uk">Українська</option>
+        <option value="ru">Русский</option>
+        <option value="pl">Polski</option>
+        <option value="zh-CN">中文</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="ne">नेपाली</option>
+        <option value="bn">বাংলা</option>
+        <option value="ur">اردو</option>
+      </select>
+      <button id="translateBtn" type="button">Tradu pagina</button>
+    </div>
+    <p class="translate-note">Se deschide o filă nouă cu întreaga pagină tradusă (Google Translate), în limba aleasă mai sus.</p>
+  </div>
 
   <details>
     <summary>🇬🇧 Voice sounds robotic? Get a natural-sounding voice</summary>
@@ -181,28 +250,118 @@
 
 <script>
 const words = [
-"Bună","Mulțumesc","Da","Nu","Te rog","Cu plăcere","Scuză-mă","Îmi pare rău",
-"Ce faci?","Sunt bine","Bună dimineața","Bună ziua","Bună seara","Noapte bună",
-"La revedere","Ne vedem mâine","Numele meu este","Cum te cheamă?","Câți ani ai?",
-"Unde este?","Cât costă?","Aici","Acolo","Frumos","Mare","Mic","Rapid","Încet",
-"Vreau","Nu vreau","Ajutor","Prieteni","Dragoste","Familie","Bucurie","Noroc",
-"Muncă","Casă","Vacanță","Mâncare","Apă","Cafea","Ceai","Berea","Vreau o cafea",
-"Un moment","Așteaptă","Hai să mergem","Foarte bine","Excelent","E minunat",
-"Super","Bravo","De acord","În regulă","Nu știu","Nicio problemă","Fii atent",
-"Înțeleg","Nu înțeleg","Păcat","Mulți ani trăiască","Felicitări","Cum te simți?",
-"Mi-e foame","Mi-e sete","Unde este toaleta?","Cu cine vorbești?","Când?","De ce?",
-"Cum?","Îmi place","Nu-mi place","Am înțeles","Nu contează","Ai dreptate",
-"Ești sigur?","Poți să mă ajuți?","Am nevoie de ajutor","Unde locuiești?",
-"Câți ani ai?","Cât timp?","Unde lucrezi?","Câți suntem?","Este frig","Este cald",
-"Ce zi este azi?","Ce oră este?","Pot să vin?","Unde mergem?","Este aproape",
-"Este departe","Mă simt bine","Nu mă simt bine","Sunt obosit","Este corect",
-"Este greșit"
+["Bună","Hi / Hello"],
+["Mulțumesc","Thank you"],
+["Da","Yes"],
+["Nu","No"],
+["Te rog","Please"],
+["Cu plăcere","You're welcome"],
+["Scuză-mă","Excuse me"],
+["Îmi pare rău","I'm sorry"],
+["Ce faci?","What are you doing? / How's it going?"],
+["Sunt bine","I'm fine"],
+["Bună dimineața","Good morning"],
+["Bună ziua","Good afternoon / Hello"],
+["Bună seara","Good evening"],
+["Noapte bună","Good night"],
+["La revedere","Goodbye"],
+["Ne vedem mâine","See you tomorrow"],
+["Numele meu este","My name is"],
+["Cum te cheamă?","What's your name?"],
+["Câți ani ai?","How old are you?"],
+["Unde este?","Where is it?"],
+["Cât costă?","How much does it cost?"],
+["Aici","Here"],
+["Acolo","There"],
+["Frumos","Beautiful / Nice"],
+["Mare","Big"],
+["Mic","Small"],
+["Rapid","Fast"],
+["Încet","Slow"],
+["Vreau","I want"],
+["Nu vreau","I don't want"],
+["Ajutor","Help"],
+["Prieteni","Friends"],
+["Dragoste","Love"],
+["Familie","Family"],
+["Bucurie","Joy"],
+["Noroc","Luck / Cheers"],
+["Muncă","Work"],
+["Casă","House"],
+["Vacanță","Vacation"],
+["Mâncare","Food"],
+["Apă","Water"],
+["Cafea","Coffee"],
+["Ceai","Tea"],
+["Berea","The beer"],
+["Vreau o cafea","I want a coffee"],
+["Un moment","One moment"],
+["Așteaptă","Wait"],
+["Hai să mergem","Let's go"],
+["Foarte bine","Very good"],
+["Excelent","Excellent"],
+["E minunat","It's wonderful"],
+["Super","Great / Cool"],
+["Bravo","Well done"],
+["De acord","I agree"],
+["În regulă","Okay / Alright"],
+["Nu știu","I don't know"],
+["Nicio problemă","No problem"],
+["Fii atent","Pay attention / Be careful"],
+["Înțeleg","I understand"],
+["Nu înțeleg","I don't understand"],
+["Păcat","Too bad / What a shame"],
+["Mulți ani trăiască","Happy birthday (traditional wish)"],
+["Felicitări","Congratulations"],
+["Cum te simți?","How do you feel?"],
+["Mi-e foame","I'm hungry"],
+["Mi-e sete","I'm thirsty"],
+["Unde este toaleta?","Where is the bathroom?"],
+["Cu cine vorbești?","Who are you talking to?"],
+["Când?","When?"],
+["De ce?","Why?"],
+["Cum?","How?"],
+["Îmi place","I like it"],
+["Nu-mi place","I don't like it"],
+["Am înțeles","I understood / Got it"],
+["Nu contează","It doesn't matter"],
+["Ai dreptate","You're right"],
+["Ești sigur?","Are you sure?"],
+["Poți să mă ajuți?","Can you help me?"],
+["Am nevoie de ajutor","I need help"],
+["Unde locuiești?","Where do you live?"],
+["Câți ani ai?","How old are you?"],
+["Cât timp?","How long?"],
+["Unde lucrezi?","Where do you work?"],
+["Câți suntem?","How many of us are there?"],
+["Este frig","It's cold"],
+["Este cald","It's hot"],
+["Ce zi este azi?","What day is it today?"],
+["Ce oră este?","What time is it?"],
+["Pot să vin?","Can I come?"],
+["Unde mergem?","Where are we going?"],
+["Este aproape","It's close / nearby"],
+["Este departe","It's far"],
+["Mă simt bine","I feel good"],
+["Nu mă simt bine","I don't feel well"],
+["Sunt obosit","I'm tired"],
+["Este corect","It's correct"],
+["Este greșit","It's wrong"]
 ];
 
 const listEl = document.getElementById('list');
 const voiceSelect = document.getElementById('voiceSelect');
 const speedRange = document.getElementById('speedRange');
 const speedValue = document.getElementById('speedValue');
+const langSelect = document.getElementById('langSelect');
+const translateBtn = document.getElementById('translateBtn');
+
+translateBtn.addEventListener('click', () => {
+  const targetLang = langSelect.value;
+  const pageUrl = window.location.href;
+  const translateUrl = `https://translate.google.com/translate?sl=ro&tl=${targetLang}&u=${encodeURIComponent(pageUrl)}`;
+  window.open(translateUrl, '_blank');
+});
 
 let voices = [];
 let romanianVoices = [];
@@ -214,7 +373,7 @@ function populateVoices(){
   voiceSelect.innerHTML = '';
   const listToShow = romanianVoices.length ? romanianVoices : voices;
 
-  listToShow.forEach((v, i) => {
+  listToShow.forEach((v) => {
     const opt = document.createElement('option');
     opt.value = v.name;
     opt.textContent = `${v.name} (${v.lang})`;
@@ -256,13 +415,23 @@ function speak(text, btn){
   window.speechSynthesis.speak(utter);
 }
 
-words.forEach(word => {
+words.forEach(([word, translation]) => {
   const row = document.createElement('div');
   row.className = 'word-row';
+
+  const textWrap = document.createElement('div');
+  textWrap.className = 'word-text-wrap';
 
   const span = document.createElement('span');
   span.className = 'word-text';
   span.textContent = word;
+
+  const transSpan = document.createElement('span');
+  transSpan.className = 'word-translation';
+  transSpan.textContent = translation;
+
+  textWrap.appendChild(span);
+  textWrap.appendChild(transSpan);
 
   const btn = document.createElement('button');
   btn.className = 'play-btn';
@@ -270,7 +439,7 @@ words.forEach(word => {
   btn.innerHTML = '▶';
   btn.addEventListener('click', () => speak(word, btn));
 
-  row.appendChild(span);
+  row.appendChild(textWrap);
   row.appendChild(btn);
   listEl.appendChild(row);
 });
