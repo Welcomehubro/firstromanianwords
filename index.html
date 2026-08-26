@@ -3,446 +3,792 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cuvinte și expresii în limba română</title>
+<meta name="description" content="50 de cuvinte și expresii românești de bază, cu traducere și pronunție audio.">
+<title>Primele cuvinte în limba română</title>
 <style>
   :root{
-    --bg:#fafaf7;
-    --ink:#1c1c1a;
-    --muted:#68665f;
-    --line:#e5e2da;
-    --accent:#c1272d;
-    --accent-dark:#961f24;
-    --card:#ffffff;
+    --bg:#f7f7f3;
+    --ink:#20201d;
+    --muted:#69675f;
+    --line:#dedbd2;
+    --accent:#b9232a;
+    --accent-dark:#8e1b20;
+    --accent-soft:#fff0f0;
+    --card:#fff;
+    --focus:#1b65b9;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box}
   body{
     margin:0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding:24px 16px 64px;
     background:var(--bg);
     color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     line-height:1.5;
-    padding:24px 16px 64px;
   }
-  .wrap{max-width:760px;margin:0 auto;}
-  h1{
-    font-size:1.6rem;
-    margin:0 0 4px;
+  button,select{font:inherit}
+  button:focus-visible,select:focus-visible,input:focus-visible{
+    outline:3px solid color-mix(in srgb,var(--focus) 45%,transparent);
+    outline-offset:2px;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  .brand{
     display:flex;
-    align-items:center;
-    gap:10px;
+    justify-content:center;
+    height:112px;
+    margin:0 auto 18px;
+    overflow:hidden;
   }
-  .sub{color:var(--muted);margin:0 0 20px;font-size:0.95rem;}
-
-  details{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:12px 16px;
-    margin-bottom:14px;
-  }
-  details summary{
-    cursor:pointer;
-    font-weight:600;
-    font-size:0.92rem;
-  }
-  details ol{margin:10px 0 4px;padding-left:20px;font-size:0.9rem;color:var(--muted);}
-
-  .translate-box{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:16px;
-    margin-bottom:14px;
-  }
-  .translate-box .label{
-    font-weight:600;
-    font-size:0.92rem;
-    margin-bottom:10px;
+  .brand img{
     display:block;
+    width:640px;
+    max-width:none;
+    height:auto;
+    align-self:flex-start;
+    transform:translateY(-66px);
   }
-  .translate-row{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-  .translate-row select{
-    flex:1 1 180px;
-    padding:9px 10px;
-    border-radius:8px;
-    border:1px solid var(--line);
-    background:#fff;
-    font-size:0.95rem;
-  }
-  .translate-row button{
-    flex:0 0 auto;
-    padding:9px 16px;
-    border-radius:8px;
-    border:none;
-    background:var(--accent);
-    color:#fff;
-    font-weight:600;
-    cursor:pointer;
-    font-size:0.95rem;
-  }
-  .translate-row button:hover{background:var(--accent-dark);}
-  .translate-note{font-size:0.78rem;color:var(--muted);margin-top:8px;}
-
-  .controls{
+  h1{font-size:clamp(1.5rem,4vw,2rem);line-height:1.2;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 20px}
+  .panel{
     background:var(--card);
     border:1px solid var(--line);
-    border-radius:10px;
+    border-radius:14px;
     padding:16px;
-    margin-bottom:20px;
-    display:grid;
-    gap:14px;
+    margin-bottom:14px;
   }
-  .control-row{display:flex;flex-direction:column;gap:6px;}
-  .control-row label{font-size:0.85rem;font-weight:600;color:var(--muted);}
-  select, input[type=range]{
-    width:100%;
-    font-size:1rem;
-  }
+  .panel-title{display:block;font-size:.92rem;font-weight:700;margin-bottom:8px}
+  .translate-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   select{
-    padding:8px 10px;
-    border-radius:8px;
-    border:1px solid var(--line);
+    width:100%;
+    padding:10px 12px;
+    color:var(--ink);
     background:#fff;
+    border:1px solid var(--line);
+    border-radius:9px;
   }
-  .speed-readout{
-    display:flex;
-    justify-content:space-between;
-    font-size:0.8rem;
-    color:var(--muted);
-  }
-  .speed-value{font-weight:700;color:var(--ink);}
-
-  .list{
+  #langSelect{flex:1 1 220px}
+  .translation-status{min-height:1.3em;margin:8px 0 0;color:var(--muted);font-size:.82rem}
+  .translation-status.error{color:#9a1c23}
+  .languages-list{margin-top:10px;border-top:1px solid var(--line);padding-top:9px}
+  .languages-list summary{font-size:.84rem;color:var(--muted)}
+  .language-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .language-chip{padding:4px 8px;border-radius:999px;background:#f1efe9;font-size:.76rem}
+  .controls{display:grid;gap:16px}
+  .control-row{display:flex;flex-direction:column;gap:7px}
+  .control-row label,.control-label{font-size:.88rem;font-weight:700}
+  .mode-switch{
     display:grid;
-    gap:8px;
+    grid-template-columns:1fr 1fr;
+    gap:4px;
+    padding:4px;
+    border-radius:10px;
+    background:#eeece6;
   }
+  .mode-btn{
+    min-height:44px;
+    border:0;
+    border-radius:8px;
+    color:var(--ink);
+    background:transparent;
+    font-weight:650;
+    cursor:pointer;
+  }
+  .mode-btn.active{color:#fff;background:var(--accent)}
+  .mode-note{margin:0;color:var(--muted);font-size:.8rem}
+  .speed-wrap{display:flex;align-items:center;gap:10px}
+  .speed-wrap input{width:100%}
+  .speed-value{min-width:3.4em;font-weight:700;text-align:right}
+  .speed-ends{display:flex;justify-content:space-between;color:var(--muted);font-size:.76rem}
+  details{margin-bottom:20px}
+  summary{cursor:pointer;font-weight:650}
+  details p,details li{color:var(--muted);font-size:.86rem}
+  details ol{padding-left:20px;margin-bottom:0}
+  .category{margin:26px 0 10px;font-size:1.03rem}
+  .category:first-child{margin-top:0}
+  .list{display:grid;gap:9px}
   .word-row{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:12px;
+    min-width:0;
+    padding:13px 14px;
     background:var(--card);
     border:1px solid var(--line);
-    border-radius:10px;
-    padding:12px 14px;
+    border-radius:12px;
   }
-  .word-text-wrap{display:flex;flex-direction:column;gap:2px;}
-  .word-text{font-size:1.05rem;}
-  .word-translation{font-size:0.85rem;color:var(--muted);}
+  .word-text-wrap{display:flex;min-width:0;flex-direction:column;gap:2px}
+  .word-text{font-size:1.08rem;font-weight:600;overflow-wrap:anywhere}
+  .syllable-mode .word-text{color:var(--accent-dark);letter-spacing:.02em}
+  .word-translation{color:var(--muted);font-size:.88rem;overflow-wrap:anywhere}
   .play-btn{
-    flex:0 0 auto;
-    width:42px;
-    height:42px;
+    display:grid;
+    place-items:center;
+    flex:0 0 48px;
+    width:48px;
+    height:48px;
+    border:0;
     border-radius:50%;
-    border:none;
-    background:var(--accent);
     color:#fff;
-    font-size:1.1rem;
+    background:var(--accent);
     cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:transform .08s ease, background .15s ease;
+    transition:transform .08s ease,background .15s ease;
   }
-  .play-btn:hover{background:var(--accent-dark);}
-  .play-btn:active{transform:scale(0.92);}
-  .play-btn.playing{background:var(--accent-dark);}
-
-  .footer-note{
-    margin-top:28px;
-    font-size:0.8rem;
-    color:var(--muted);
+  .play-btn:hover,.play-btn.playing{background:var(--accent-dark)}
+  .play-btn:active{transform:scale(.94)}
+  .play-btn.playing .play-icon{display:none}
+  .play-btn.playing::after{content:"■";font-size:.8rem}
+  .footer-note{margin:30px 0 0;color:var(--muted);font-size:.8rem;text-align:center}
+  .ownership{
+    margin-top:18px;
+    padding:14px 16px;
+    border:1px solid #e2bcc0;
+    border-radius:12px;
+    background:var(--accent-soft);
+    color:#6f171c;
     text-align:center;
   }
-
-  @media (min-width:520px){
-    .controls{grid-template-columns:1fr 1fr;}
+  .ownership strong{display:block;margin-bottom:3px}
+  .ownership p{margin:0;font-size:.82rem}
+  .noscript{padding:12px;border-radius:10px;background:#fff2cd;color:#5f4a00}
+  @media (min-width:600px){
+    .controls{grid-template-columns:repeat(3,1fr);align-items:start}
   }
+  @media (max-width:420px){
+    body{padding:18px 12px 48px}
+    .brand{height:82px;margin-bottom:14px}
+    .brand img{width:440px;transform:translateY(-44px)}
+    .panel{padding:14px}
+    .word-row{padding:12px}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap">
+  <div class="brand" role="img" aria-label="WelcomeHub">
+    <img src="welcomehub-logo-transparent.png" alt="Sigla WelcomeHub">
+  </div>
+  <h1><span aria-hidden="true">🇷🇴</span> <span data-ui="title">Primele cuvinte în limba română</span></h1>
+  <p class="sub" data-ui="subtitle">Alege limba traducerii și ascultă fiecare expresie normal sau despărțită în silabe.</p>
 
-  <h1>🇷🇴 Cuvinte și expresii în limba română</h1>
-  <p class="sub">Apasă pe butonul roșu pentru a asculta pronunția. Sub fiecare expresie găsești traducerea în engleză.</p>
-
-  <div class="translate-box">
-    <span class="label">🌍 Translate this page / Tradu această pagină</span>
+  <section class="panel" aria-labelledby="translationLabel">
+    <label class="panel-title" id="translationLabel" for="langSelect"><span aria-hidden="true">🌍</span> <span data-ui="translationLabel">Limba traducerii</span></label>
     <div class="translate-row">
       <select id="langSelect">
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-        <option value="es">Español</option>
-        <option value="it">Italiano</option>
-        <option value="pt">Português</option>
-        <option value="tr">Türkçe</option>
-        <option value="ar">العربية</option>
-        <option value="hi">हिन्दी</option>
-        <option value="uk">Українська</option>
-        <option value="ru">Русский</option>
-        <option value="pl">Polski</option>
-        <option value="zh-CN">中文</option>
-        <option value="vi">Tiếng Việt</option>
-        <option value="ne">नेपाली</option>
-        <option value="bn">বাংলা</option>
-        <option value="ur">اردو</option>
+        <option value="en">🇬🇧 English — Engleză</option>
+        <option value="ro">🇷🇴 Română — Romanian</option>
+        <optgroup label="Asia" id="asiaGroup">
+          <option value="si">🇱🇰 සිංහල — Sinhala (Sri Lanka)</option>
+          <option value="ta">🇱🇰 தமிழ் — Tamilă (Sri Lanka / India)</option>
+          <option value="ace">🌏 Bahsa Acèh — Acehneză</option>
+          <option value="ar">🌏 العربية — Arabă</option>
+          <option value="hy">🌏 Հայերեն — Armeană</option>
+          <option value="as">🌏 অসমীয়া — Asameză</option>
+          <option value="awa">🌏 अवधी — Awadhi</option>
+          <option value="az">🌏 Azərbaycanca — Azeră</option>
+          <option value="ban">🌏 Basa Bali — Balineză</option>
+          <option value="btx">🌏 Karo — Batak Karo</option>
+          <option value="bts">🌏 Simalungun — Batak Simalungun</option>
+          <option value="bbc">🌏 Toba — Batak Toba</option>
+          <option value="bn">🌏 বাংলা — Bengali</option>
+          <option value="bew">🌏 Betawi — Betawi</option>
+          <option value="bho">🌏 भोजपुरी — Bhojpuri</option>
+          <option value="bik">🌏 Bikol — Bikol</option>
+          <option value="bua">🌏 Буряад — Buriată</option>
+          <option value="my">🌏 မြန်မာ — Birmană</option>
+          <option value="yue">🌏 粵語 — Cantoneză</option>
+          <option value="ceb">🌏 Cebuano — Cebuano</option>
+          <option value="zh-CN">🌏 简体中文 — Chineză simplificată</option>
+          <option value="zh-TW">🌏 繁體中文 — Chineză tradițională</option>
+          <option value="cv">🌏 Чӑвашла — Ciuvașă</option>
+          <option value="dv">🌏 ދިވެހި — Divehi</option>
+          <option value="doi">🌏 डोगरी — Dogri</option>
+          <option value="dz">🌏 རྫོང་ཁ — Dzongkha</option>
+          <option value="fil">🌏 Filipino — Filipineză</option>
+          <option value="ka">🌏 ქართული — Georgiană</option>
+          <option value="gu">🌏 ગુજરાતી — Gujarati</option>
+          <option value="cnh">🌏 Laiholh — Hakha Chin</option>
+          <option value="he">🌏 עברית — Ebraică</option>
+          <option value="hil">🌏 Ilonggo — Hiligaynon</option>
+          <option value="hi">🌏 हिन्दी — Hindi</option>
+          <option value="hmn">🌏 Hmoob — Hmong</option>
+          <option value="ilo">🌏 Ilokano — Ilocano</option>
+          <option value="id">🌏 Bahasa Indonesia — Indoneziană</option>
+          <option value="ja">🌏 日本語 — Japoneză</option>
+          <option value="jv">🌏 Basa Jawa — Javaneză</option>
+          <option value="kn">🌏 ಕನ್ನಡ — Kannada</option>
+          <option value="pam">🌏 Kapampangan — Kapampangan</option>
+          <option value="kk">🌏 Қазақша — Kazahă</option>
+          <option value="km">🌏 ខ្មែរ — Khmeră</option>
+          <option value="ko">🌏 한국어 — Coreeană</option>
+          <option value="gom">🌏 कोंकणी — Konkani</option>
+          <option value="ku">🌏 Kurdî — Kurdă (Kurmanji)</option>
+          <option value="ckb">🌏 کوردی — Kurdă (Sorani)</option>
+          <option value="ky">🌏 Кыргызча — Kârgâză</option>
+          <option value="lo">🌏 ລາວ — Laoțiană</option>
+          <option value="mai">🌏 मैथिली — Maithili</option>
+          <option value="mak">🌏 Basa Mangkasara — Makassar</option>
+          <option value="ms">🌏 Bahasa Melayu — Malaeză</option>
+          <option value="ms-Arab">🌏 بهاس ملايو — Malaeză (Jawi)</option>
+          <option value="ml">🌏 മലയാളം — Malayalam</option>
+          <option value="mr">🌏 मराठी — Marathi</option>
+          <option value="mni-Mtei">🌏 ꯃꯤꯇꯩꯂꯣꯟ — Meitei</option>
+          <option value="min">🌏 Baso Minang — Minangkabau</option>
+          <option value="lus">🌏 Mizo ṭawng — Mizo</option>
+          <option value="mn">🌏 Монгол — Mongolă</option>
+          <option value="ne">🌏 नेपाली — Nepaleză</option>
+          <option value="new">🌏 नेपाल भाषा — Newari</option>
+          <option value="or">🌏 ଓଡ଼ିଆ — Odia</option>
+          <option value="pag">🌏 Pangasinan — Pangasinan</option>
+          <option value="ps">🌏 پښتو — Paștună</option>
+          <option value="fa">🌏 فارسی — Persană</option>
+          <option value="pa">🌏 ਪੰਜਾਬੀ — Punjabi</option>
+          <option value="pa-Arab">🌏 پنجابی — Punjabi (Shahmukhi)</option>
+          <option value="sa">🌏 संस्कृतम् — Sanscrită</option>
+          <option value="shn">🌏 လိၵ်ႈတႆး — Shan</option>
+          <option value="sd">🌏 سنڌي — Sindhi</option>
+          <option value="su">🌏 Basa Sunda — Sundaneză</option>
+          <option value="tg">🌏 Тоҷикӣ — Tadjică</option>
+          <option value="tt">🌏 Татарча — Tătară</option>
+          <option value="te">🌏 తెలుగు — Telugu</option>
+          <option value="tet">🌏 Tetun — Tetum</option>
+          <option value="th">🌏 ไทย — Thailandeză</option>
+          <option value="tr">🌏 Türkçe — Turcă</option>
+          <option value="tk">🌏 Türkmençe — Turkmenă</option>
+          <option value="ur">🌏 اردو — Urdu</option>
+          <option value="ug">🌏 ئۇيغۇرچە — Uigură</option>
+          <option value="uz">🌏 Oʻzbekcha — Uzbekă</option>
+          <option value="vi">🌏 Tiếng Việt — Vietnameză</option>
+        </optgroup>
+        <optgroup label="Africa" id="africaGroup">
+          <option value="ach">🌍 Acholi — Acholi</option>
+          <option value="af">🌍 Afrikaans — Afrikaans</option>
+          <option value="alz">🌍 Alur — Alur</option>
+          <option value="am">🌍 አማርኛ — Amharică</option>
+          <option value="bm">🌍 Bamanankan — Bambara</option>
+          <option value="bem">🌍 Ichibemba — Bemba</option>
+          <option value="ny">🌍 Chichewa — Chichewa</option>
+          <option value="din">🌍 Thuɔŋjäŋ — Dinka</option>
+          <option value="dov">🌍 Dombe — Dombe</option>
+          <option value="ee">🌍 Eʋegbe — Ewe</option>
+          <option value="ff">🌍 Fulfulde — Fulfulde</option>
+          <option value="gaa">🌍 Gã — Ga</option>
+          <option value="lg">🌍 Luganda — Ganda</option>
+          <option value="ha">🌍 Hausa — Hausa</option>
+          <option value="ig">🌍 Igbo — Igbo</option>
+          <option value="cgg">🌍 Rukiga — Kiga</option>
+          <option value="rw">🌍 Kinyarwanda — Kinyarwanda</option>
+          <option value="ktu">🌍 Kituba — Kituba</option>
+          <option value="kri">🌍 Krio — Krio</option>
+          <option value="ln">🌍 Lingála — Lingala</option>
+          <option value="luo">🌍 Dholuo — Luo</option>
+          <option value="mg">🌍 Malagasy — Malgașă</option>
+          <option value="nr">🌍 isiNdebele — Ndebele de Sud</option>
+          <option value="nso">🌍 Sepedi — Sotho de Nord</option>
+          <option value="nus">🌍 Thok Naath — Nuer</option>
+          <option value="om">🌍 Afaan Oromoo — Oromo</option>
+          <option value="rn">🌍 Kirundi — Rundi</option>
+          <option value="sg">🌍 Sängö — Sango</option>
+          <option value="st">🌍 Sesotho — Sotho</option>
+          <option value="crs">🌍 Kreol Seselwa — Creolă din Seychelles</option>
+          <option value="sn">🌍 chiShona — Shona</option>
+          <option value="so">🌍 Soomaali — Somaleză</option>
+          <option value="sw">🌍 Kiswahili — Swahili</option>
+          <option value="ss">🌍 siSwati — Swati</option>
+          <option value="ti">🌍 ትግርኛ — Tigrinya</option>
+          <option value="ts">🌍 Xitsonga — Tsonga</option>
+          <option value="tn">🌍 Setswana — Tswana</option>
+          <option value="ak">🌍 Twi — Twi (Akan)</option>
+          <option value="xh">🌍 isiXhosa — Xhosa</option>
+          <option value="yo">🌍 Yorùbá — Yoruba</option>
+          <option value="zu">🌍 isiZulu — Zulu</option>
+        </optgroup>
       </select>
-      <button id="translateBtn" type="button">Tradu pagina</button>
     </div>
-    <p class="translate-note">Se deschide o filă nouă cu întreaga pagină tradusă (Google Translate), în limba aleasă mai sus.</p>
-  </div>
+    <details class="languages-list">
+      <summary data-ui="availableLanguages">Limbi asiatice și africane disponibile</summary>
+      <div class="language-chips" aria-label="Limbi disponibile"></div>
+    </details>
+    <p id="translationStatus" class="translation-status" role="status" aria-live="polite">Traducerea în engleză este disponibilă direct.</p>
+  </section>
 
-  <details>
-    <summary>🇬🇧 Voice sounds robotic? Get a natural-sounding voice</summary>
-    <p style="font-size:0.9rem;color:var(--muted);margin-top:8px;">Most systems install a basic, robotic-sounding voice by default. A much more natural "Enhanced" / "Premium" version usually exists for free.</p>
-    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On Mac (Safari / Chrome):</p>
-    <ol>
-      <li>System Settings → Accessibility → Spoken Content</li>
-      <li>System Voice → Manage Voices</li>
-      <li>Find Romanian, download the "Enhanced"/"Premium" version</li>
-      <li>Reload this page and pick it from the dropdown below</li>
-    </ol>
-    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On Windows (Chrome / Edge):</p>
-    <ol>
-      <li>Settings → Time & Language → Speech</li>
-      <li>Manage voices → Add voices → search Romanian</li>
-      <li>Install, restart the browser, pick it below</li>
-    </ol>
-    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On Android:</p>
-    <ol>
-      <li>Settings → General management → Text-to-speech</li>
-      <li>Select Google Text-to-speech Engine</li>
-      <li>Gear icon → Install voice data → Romanian</li>
-    </ol>
-    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On iPhone (Safari):</p>
-    <ol>
-      <li>Settings → Accessibility → Spoken Content → Voices → Romanian</li>
-      <li>Download an "Enhanced"/"Premium" voice</li>
-      <li>Reload this page and pick it below</li>
-    </ol>
-  </details>
-
-  <div class="controls">
+  <section class="panel controls" aria-label="Opțiuni pentru pronunție">
     <div class="control-row">
-      <label for="voiceSelect">🎙️ Voce</label>
+      <label for="voiceSelect"><span aria-hidden="true">🎙️</span> <span data-ui="voiceLabel">Voce românească</span></label>
       <select id="voiceSelect"></select>
     </div>
     <div class="control-row">
-      <label for="speedRange">🐢 Viteză redare</label>
-      <input type="range" id="speedRange" min="0.4" max="1.2" step="0.05" value="0.85">
-      <div class="speed-readout">
-        <span>🐌 Pe silabe</span>
-        <span class="speed-value" id="speedValue">0.85x</span>
-        <span>🔊 Normal</span>
+      <span class="control-label" id="modeLabel"><span aria-hidden="true">🔊</span> <span data-ui="modeLabel">Mod de redare</span></span>
+      <div class="mode-switch" role="group" aria-labelledby="modeLabel">
+        <button class="mode-btn active" id="normalMode" type="button" aria-pressed="true"><span aria-hidden="true">▶</span> <span data-ui="normalMode">Normal</span></button>
+        <button class="mode-btn" id="syllableMode" type="button" aria-pressed="false"><span aria-hidden="true">🐢</span> <span data-ui="syllableMode">Pe silabe</span></button>
       </div>
+      <p class="mode-note" id="modeNote">Cuvintele sunt afișate și rostite normal.</p>
     </div>
-  </div>
+    <div class="control-row">
+      <label for="speedRange"><span aria-hidden="true">⏱️</span> <span data-ui="speedLabel">Viteza pronunției</span></label>
+      <div class="speed-wrap">
+        <input type="range" id="speedRange" min="0.6" max="1.3" step="0.05" value="0.9">
+        <output class="speed-value" id="speedValue" for="speedRange">0.90×</output>
+      </div>
+      <div class="speed-ends"><span data-ui="slower">Mai lent</span><span data-ui="faster">Mai rapid</span></div>
+    </div>
+  </section>
 
-  <div class="list" id="list"></div>
+  <details class="panel">
+    <summary data-ui="voiceHelpTitle">Vocea sună prea robotic?</summary>
+    <p data-ui="voiceHelpText">Site-ul alege automat cea mai bună voce românească disponibilă. Pentru o voce mai naturală, instalează pe telefon sau calculator o voce românească „Enhanced”, „Premium” ori „Natural”, apoi reîncarcă pagina.</p>
+    <ol>
+      <li data-ui="voiceHelpApple">iPhone/Mac: Configurări sistem → Accesibilitate → Conținut enunțat → Voci.</li>
+      <li data-ui="voiceHelpAndroid">Android: Setări → Text transformat în vorbire → Instalează date vocale → Română.</li>
+      <li data-ui="voiceHelpWindows">Windows: Setări → Oră și limbă → Vorbire → Adăugați voci → Română.</li>
+    </ol>
+  </details>
 
-  <p class="footer-note">Se folosește vocea nativă a browser-ului tău pentru pronunție. Pentru cel mai bun rezultat, deschide acest fișier în Chrome sau Safari, cu volumul pornit.</p>
-</div>
+  <div id="list" class="list"></div>
+  <noscript><p class="noscript">Activează JavaScript pentru a vedea lista, traducerile și pentru a asculta pronunția.</p></noscript>
+  <p class="footer-note" data-ui="footer">Pronunția folosește vocea românească instalată în browserul sau dispozitivul tău.</p>
+  <footer class="ownership">
+    <strong data-ui="ownerTitle">© WelcomeHub. Material proprietar.</strong>
+    <p data-ui="ownerNotice">Acest material aparține WelcomeHub. Reproducerea sau distribuirea acestuia în afara organizației este interzisă.</p>
+  </footer>
+</main>
 
 <script>
-const words = [
-["Bună","Hi / Hello"],
-["Mulțumesc","Thank you"],
-["Da","Yes"],
-["Nu","No"],
-["Te rog","Please"],
-["Cu plăcere","You're welcome"],
-["Scuză-mă","Excuse me"],
-["Îmi pare rău","I'm sorry"],
-["Ce faci?","What are you doing? / How's it going?"],
-["Sunt bine","I'm fine"],
-["Bună dimineața","Good morning"],
-["Bună ziua","Good afternoon / Hello"],
-["Bună seara","Good evening"],
-["Noapte bună","Good night"],
-["La revedere","Goodbye"],
-["Ne vedem mâine","See you tomorrow"],
-["Numele meu este","My name is"],
-["Cum te cheamă?","What's your name?"],
-["Câți ani ai?","How old are you?"],
-["Unde este?","Where is it?"],
-["Cât costă?","How much does it cost?"],
-["Aici","Here"],
-["Acolo","There"],
-["Frumos","Beautiful / Nice"],
-["Mare","Big"],
-["Mic","Small"],
-["Rapid","Fast"],
-["Încet","Slow"],
-["Vreau","I want"],
-["Nu vreau","I don't want"],
-["Ajutor","Help"],
-["Prieteni","Friends"],
-["Dragoste","Love"],
-["Familie","Family"],
-["Bucurie","Joy"],
-["Noroc","Luck / Cheers"],
-["Muncă","Work"],
-["Casă","House"],
-["Vacanță","Vacation"],
-["Mâncare","Food"],
-["Apă","Water"],
-["Cafea","Coffee"],
-["Ceai","Tea"],
-["Berea","The beer"],
-["Vreau o cafea","I want a coffee"],
-["Un moment","One moment"],
-["Așteaptă","Wait"],
-["Hai să mergem","Let's go"],
-["Foarte bine","Very good"],
-["Excelent","Excellent"],
-["E minunat","It's wonderful"],
-["Super","Great / Cool"],
-["Bravo","Well done"],
-["De acord","I agree"],
-["În regulă","Okay / Alright"],
-["Nu știu","I don't know"],
-["Nicio problemă","No problem"],
-["Fii atent","Pay attention / Be careful"],
-["Înțeleg","I understand"],
-["Nu înțeleg","I don't understand"],
-["Păcat","Too bad / What a shame"],
-["Mulți ani trăiască","Happy birthday (traditional wish)"],
-["Felicitări","Congratulations"],
-["Cum te simți?","How do you feel?"],
-["Mi-e foame","I'm hungry"],
-["Mi-e sete","I'm thirsty"],
-["Unde este toaleta?","Where is the bathroom?"],
-["Cu cine vorbești?","Who are you talking to?"],
-["Când?","When?"],
-["De ce?","Why?"],
-["Cum?","How?"],
-["Îmi place","I like it"],
-["Nu-mi place","I don't like it"],
-["Am înțeles","I understood / Got it"],
-["Nu contează","It doesn't matter"],
-["Ai dreptate","You're right"],
-["Ești sigur?","Are you sure?"],
-["Poți să mă ajuți?","Can you help me?"],
-["Am nevoie de ajutor","I need help"],
-["Unde locuiești?","Where do you live?"],
-["Câți ani ai?","How old are you?"],
-["Cât timp?","How long?"],
-["Unde lucrezi?","Where do you work?"],
-["Câți suntem?","How many of us are there?"],
-["Este frig","It's cold"],
-["Este cald","It's hot"],
-["Ce zi este azi?","What day is it today?"],
-["Ce oră este?","What time is it?"],
-["Pot să vin?","Can I come?"],
-["Unde mergem?","Where are we going?"],
-["Este aproape","It's close / nearby"],
-["Este departe","It's far"],
-["Mă simt bine","I feel good"],
-["Nu mă simt bine","I don't feel well"],
-["Sunt obosit","I'm tired"],
-["Este corect","It's correct"],
-["Este greșit","It's wrong"]
+const groups = [
+  {title:"Saluturi și prezentare",titleKey:"categoryGreetings",items:[
+    ["Bună","Bu-nă","Hi / Hello"],
+    ["Bună dimineața","Bu-nă di-mi-nea-ța","Good morning"],
+    ["Bună ziua","Bu-nă zi-ua","Good afternoon / Hello"],
+    ["Bună seara","Bu-nă sea-ra","Good evening"],
+    ["Noapte bună","Noap-te bu-nă","Good night"],
+    ["La revedere","La re-ve-de-re","Goodbye"],
+    ["Ne vedem mâine","Ne ve-dem mâi-ne","See you tomorrow"],
+    ["Ce faci?","Ce faci?","How are you? / How's it going?"],
+    ["Sunt bine","Sunt bi-ne","I'm fine"],
+    ["Numele meu este","Nu-me-le meu es-te","My name is"]
+  ]},
+  {title:"Politețe și răspunsuri uzuale",titleKey:"categoryPoliteness",items:[
+    ["Mulțumesc","Mul-țu-mesc","Thank you"],
+    ["Te rog","Te rog","Please"],
+    ["Cu plăcere","Cu plă-ce-re","You're welcome"],
+    ["Scuză-mă","Scu-ză-mă","Excuse me"],
+    ["Îmi pare rău","Îmi pa-re rău","I'm sorry"],
+    ["Da","Da","Yes"],
+    ["Nu","Nu","No"],
+    ["Nicio problemă","Ni-cio pro-ble-mă","No problem"],
+    ["În regulă","În re-gu-lă","Okay / Alright"],
+    ["De acord","De a-cord","I agree"]
+  ]},
+  {title:"Întrebări esențiale",titleKey:"categoryQuestions",items:[
+    ["Cum te cheamă?","Cum te chea-mă?","What's your name?"],
+    ["Unde este?","Un-de es-te?","Where is it?"],
+    ["Cât costă?","Cât cos-tă?","How much does it cost?"],
+    ["Când?","Când?","When?"],
+    ["De ce?","De ce?","Why?"],
+    ["Cum?","Cum?","How?"],
+    ["Unde este toaleta?","Un-de es-te to-a-le-ta?","Where is the bathroom?"],
+    ["Ce oră este?","Ce o-ră es-te?","What time is it?"],
+    ["Ce zi este azi?","Ce zi es-te azi?","What day is it today?"],
+    ["Ești sigur?","Ești si-gur?","Are you sure?"]
+  ]},
+  {title:"Nevoi și stări personale",titleKey:"categoryNeeds",items:[
+    ["Vreau","Vreau","I want"],
+    ["Nu vreau","Nu vreau","I don't want"],
+    ["Ajutor","A-ju-tor","Help"],
+    ["Am nevoie de ajutor","Am ne-vo-ie de a-ju-tor","I need help"],
+    ["Poți să mă ajuți?","Poți să mă a-juți?","Can you help me?"],
+    ["Mi-e foame","Mi-e foa-me","I'm hungry"],
+    ["Mi-e sete","Mi-e se-te","I'm thirsty"],
+    ["Mă simt bine","Mă simt bi-ne","I feel good"],
+    ["Nu mă simt bine","Nu mă simt bi-ne","I don't feel well"],
+    ["Sunt obosit","Sunt o-bo-sit","I'm tired"]
+  ]},
+  {title:"Orientare și conversație",titleKey:"categoryConversation",items:[
+    ["Aici","A-ici","Here"],
+    ["Acolo","A-co-lo","There"],
+    ["Este aproape","Es-te a-proa-pe","It's close / nearby"],
+    ["Este departe","Es-te de-par-te","It's far"],
+    ["Înțeleg","În-țe-leg","I understand"],
+    ["Nu înțeleg","Nu în-țe-leg","I don't understand"],
+    ["Nu știu","Nu știu","I don't know"],
+    ["Îmi place","Îmi pla-ce","I like it"],
+    ["Nu-mi place","Nu-mi pla-ce","I don't like it"],
+    ["Așteaptă","Aș-teap-tă","Wait"]
+  ]}
 ];
 
-const listEl = document.getElementById('list');
-const voiceSelect = document.getElementById('voiceSelect');
-const speedRange = document.getElementById('speedRange');
-const speedValue = document.getElementById('speedValue');
-const langSelect = document.getElementById('langSelect');
-const translateBtn = document.getElementById('translateBtn');
+const UI_RO = {
+  title:"Primele cuvinte în limba română",
+  subtitle:"Alege limba traducerii și ascultă fiecare expresie normal sau despărțită în silabe.",
+  translationLabel:"Limba traducerii",
+  availableLanguages:"Limbi disponibile",
+  asiaGroup:"Asia",
+  africaGroup:"Africa",
+  voiceLabel:"Voce românească",
+  modeLabel:"Mod de redare",
+  normalMode:"Normal",
+  syllableMode:"Pe silabe",
+  speedLabel:"Viteza pronunției",
+  slower:"Mai lent",
+  faster:"Mai rapid",
+  normalNote:"Cuvintele sunt afișate și rostite normal.",
+  syllableNote:"Toate expresiile sunt despărțite și rostite pe silabe.",
+  voiceHelpTitle:"Vocea sună prea robotic?",
+  voiceHelpText:"Site-ul alege automat cea mai bună voce românească disponibilă. Pentru o voce mai naturală, instalează pe telefon sau calculator o voce românească «Enhanced», «Premium» ori «Natural», apoi reîncarcă pagina.",
+  voiceHelpApple:"iPhone/Mac: Configurări sistem → Accesibilitate → Conținut enunțat → Voci.",
+  voiceHelpAndroid:"Android: Setări → Text transformat în vorbire → Instalează date vocale → Română.",
+  voiceHelpWindows:"Windows: Setări → Oră și limbă → Vorbire → Adăugați voci → Română.",
+  categoryGreetings:"Saluturi și prezentare",
+  categoryPoliteness:"Politețe și răspunsuri uzuale",
+  categoryQuestions:"Întrebări esențiale",
+  categoryNeeds:"Nevoi și stări personale",
+  categoryConversation:"Orientare și conversație",
+  footer:"Pronunția folosește vocea românească instalată în browserul sau dispozitivul tău.",
+  ownerTitle:"© WelcomeHub. Material proprietar.",
+  ownerNotice:"Acest material aparține WelcomeHub. Reproducerea sau distribuirea acestuia în afara organizației este interzisă.",
+  logoAlt:"Sigla WelcomeHub",
+  availableLanguagesAria:"Limbi disponibile",
+  statusEnglish:"Traducerea în engleză este disponibilă direct.",
+  statusRomanian:"Interfața este afișată în limba română.",
+  statusCached:"Traducerea memorată a fost afișată.",
+  statusLoading:"Se traduc expresiile și interfața…",
+  statusReady:"Traducerea este gata și a fost memorată pe acest dispozitiv.",
+  statusError:"Traducerea nu este disponibilă momentan. Verifică internetul sau încearcă din nou.",
+  listenPrefix:"Ascultă"
+};
 
-translateBtn.addEventListener('click', () => {
-  const targetLang = langSelect.value;
-  const pageUrl = window.location.href;
-  const translateUrl = `https://translate.google.com/translate?sl=ro&tl=${targetLang}&u=${encodeURIComponent(pageUrl)}`;
-  window.open(translateUrl, '_blank');
+const UI_EN = {
+  title:"First words in Romanian",
+  subtitle:"Choose the translation language and listen to each phrase normally or divided into syllables.",
+  translationLabel:"Translation language",
+  availableLanguages:"Available languages",
+  asiaGroup:"Asia",
+  africaGroup:"Africa",
+  voiceLabel:"Romanian voice",
+  modeLabel:"Playback mode",
+  normalMode:"Normal",
+  syllableMode:"By syllables",
+  speedLabel:"Pronunciation speed",
+  slower:"Slower",
+  faster:"Faster",
+  normalNote:"The words are displayed and spoken normally.",
+  syllableNote:"All phrases are divided and spoken by syllables.",
+  voiceHelpTitle:"Does the voice sound too robotic?",
+  voiceHelpText:"The site automatically selects the best Romanian voice available. For a more natural voice, install an Enhanced, Premium or Natural Romanian voice on your phone or computer, then reload the page.",
+  voiceHelpApple:"iPhone/Mac: System Settings → Accessibility → Spoken Content → Voices.",
+  voiceHelpAndroid:"Android: Settings → Text-to-speech → Install voice data → Romanian.",
+  voiceHelpWindows:"Windows: Settings → Time & language → Speech → Add voices → Romanian.",
+  categoryGreetings:"Greetings and introductions",
+  categoryPoliteness:"Politeness and common answers",
+  categoryQuestions:"Essential questions",
+  categoryNeeds:"Needs and personal states",
+  categoryConversation:"Directions and conversation",
+  footer:"Pronunciation uses the Romanian voice installed in your browser or device.",
+  ownerTitle:"© WelcomeHub. Proprietary material.",
+  ownerNotice:"This material belongs to WelcomeHub. Its reproduction or distribution outside the organisation is prohibited.",
+  logoAlt:"WelcomeHub logo",
+  availableLanguagesAria:"Available languages",
+  statusEnglish:"The English translation is displayed directly.",
+  statusRomanian:"The interface is displayed in Romanian.",
+  statusCached:"The saved translation has been displayed.",
+  statusLoading:"The phrases and interface are being translated…",
+  statusReady:"The translation is ready and has been saved on this device.",
+  statusError:"Translation is currently unavailable. Check your internet connection or try again.",
+  listenPrefix:"Listen"
+};
+
+const items = groups.flatMap(group => group.items.map(item => ({ro:item[0],syllables:item[1],en:item[2]})));
+const listEl = document.getElementById("list");
+const voiceSelect = document.getElementById("voiceSelect");
+const langSelect = document.getElementById("langSelect");
+const translationStatus = document.getElementById("translationStatus");
+const normalMode = document.getElementById("normalMode");
+const syllableMode = document.getElementById("syllableMode");
+const modeNote = document.getElementById("modeNote");
+const speedRange = document.getElementById("speedRange");
+const speedValue = document.getElementById("speedValue");
+const translationSpans = [];
+const wordSpans = [];
+let voices = [];
+let isSyllableMode = false;
+let translationRequest = 0;
+let activeButton = null;
+let currentUi = UI_RO;
+
+function renderList(){
+  groups.forEach(group => {
+    const heading = document.createElement("h2");
+    heading.className = "category";
+    heading.textContent = group.title;
+    heading.dataset.ui = group.titleKey;
+    listEl.appendChild(heading);
+
+    group.items.forEach(item => {
+      const itemIndex = items.findIndex(entry => entry.ro === item[0]);
+      const row = document.createElement("article");
+      row.className = "word-row";
+
+      const textWrap = document.createElement("div");
+      textWrap.className = "word-text-wrap";
+      const wordSpan = document.createElement("span");
+      wordSpan.className = "word-text";
+      wordSpan.textContent = item[0];
+      wordSpan.lang = "ro";
+      wordSpan.dir = "ltr";
+      wordSpans[itemIndex] = wordSpan;
+
+      const translationSpan = document.createElement("span");
+      translationSpan.className = "word-translation";
+      translationSpan.textContent = item[2];
+      translationSpans[itemIndex] = translationSpan;
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "play-btn";
+      button.setAttribute("aria-label", "Ascultă: " + item[0]);
+      button.innerHTML = '<span class="play-icon" aria-hidden="true">▶</span>';
+      button.addEventListener("click", () => speakItem(items[itemIndex],button));
+
+      textWrap.append(wordSpan,translationSpan);
+      row.append(textWrap,button);
+      listEl.appendChild(row);
+    });
+  });
+}
+
+function setMode(syllables){
+  window.speechSynthesis.cancel();
+  stopPlaying();
+  isSyllableMode = syllables;
+  document.body.classList.toggle("syllable-mode",syllables);
+  normalMode.classList.toggle("active",!syllables);
+  syllableMode.classList.toggle("active",syllables);
+  normalMode.setAttribute("aria-pressed",String(!syllables));
+  syllableMode.setAttribute("aria-pressed",String(syllables));
+  modeNote.textContent = syllables ? currentUi.syllableNote : currentUi.normalNote;
+  items.forEach((item,index) => { wordSpans[index].textContent = syllables ? item.syllables : item.ro; });
+}
+
+normalMode.addEventListener("click",() => setMode(false));
+syllableMode.addEventListener("click",() => setMode(true));
+speedRange.addEventListener("input",() => {
+  speedValue.value = Number(speedRange.value).toFixed(2) + "×";
 });
 
-let voices = [];
-let romanianVoices = [];
+function voiceScore(voice){
+  const name = voice.name.toLowerCase();
+  let score = voice.lang.toLowerCase().startsWith("ro") ? 100 : 0;
+  if(/natural|premium|enhanced|neural/.test(name)) score += 40;
+  if(/ioana|andrei|alina/.test(name)) score += 10;
+  if(voice.localService) score += 3;
+  return score;
+}
 
 function populateVoices(){
   voices = window.speechSynthesis.getVoices();
-  romanianVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('ro'));
-
-  voiceSelect.innerHTML = '';
-  const listToShow = romanianVoices.length ? romanianVoices : voices;
-
-  listToShow.forEach((v) => {
-    const opt = document.createElement('option');
-    opt.value = v.name;
-    opt.textContent = `${v.name} (${v.lang})`;
-    voiceSelect.appendChild(opt);
+  const romanian = voices.filter(voice => voice.lang && voice.lang.toLowerCase().startsWith("ro"));
+  const available = (romanian.length ? romanian : voices).slice().sort((a,b) => voiceScore(b)-voiceScore(a));
+  const previous = voiceSelect.value;
+  voiceSelect.innerHTML = "";
+  available.forEach(voice => {
+    const option = document.createElement("option");
+    option.value = voice.name;
+    option.textContent = `${voice.name} (${voice.lang})`;
+    voiceSelect.appendChild(option);
   });
-
-  if(!romanianVoices.length){
-    const note = document.createElement('option');
-    note.disabled = true;
-    note.textContent = '— nicio voce română găsită, se folosește vocea implicită —';
-    voiceSelect.prepend(note);
+  if(previous && available.some(voice => voice.name === previous)) voiceSelect.value = previous;
+  if(!available.length){
+    const option = document.createElement("option");
+    option.textContent = "Vocea implicită a dispozitivului";
+    voiceSelect.appendChild(option);
   }
 }
 
-populateVoices();
-if(speechSynthesis.onvoiceschanged !== undefined){
-  speechSynthesis.onvoiceschanged = populateVoices;
+function selectedVoice(){
+  return voices.find(voice => voice.name === voiceSelect.value) || voices.find(voice => voice.lang?.toLowerCase().startsWith("ro"));
 }
 
-speedRange.addEventListener('input', () => {
-  speedValue.textContent = parseFloat(speedRange.value).toFixed(2) + 'x';
-});
+function makeUtterance(text,rate){
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voice = selectedVoice();
+  if(voice) utterance.voice = voice;
+  utterance.lang = voice?.lang || "ro-RO";
+  utterance.rate = rate;
+  utterance.pitch = 1;
+  return utterance;
+}
 
-function speak(text, btn){
+function stopPlaying(){
+  if(activeButton) activeButton.classList.remove("playing");
+  activeButton = null;
+}
+
+function speakItem(item,button){
   window.speechSynthesis.cancel();
-  document.querySelectorAll('.play-btn.playing').forEach(b => b.classList.remove('playing'));
+  stopPlaying();
+  activeButton = button;
+  button.classList.add("playing");
 
-  const utter = new SpeechSynthesisUtterance(text);
-  const selectedName = voiceSelect.value;
-  const chosen = voices.find(v => v.name === selectedName);
-  if(chosen) utter.voice = chosen;
-  utter.lang = chosen ? chosen.lang : 'ro-RO';
-  utter.rate = parseFloat(speedRange.value);
+  if(!isSyllableMode){
+    const utterance = makeUtterance(item.ro,Number(speedRange.value));
+    utterance.onend = stopPlaying;
+    utterance.onerror = stopPlaying;
+    window.speechSynthesis.speak(utterance);
+    return;
+  }
 
-  btn.classList.add('playing');
-  utter.onend = () => btn.classList.remove('playing');
-  utter.onerror = () => btn.classList.remove('playing');
-
-  window.speechSynthesis.speak(utter);
+  const parts = item.syllables
+    .replace(/[?!.,]/g,"")
+    .split(/[-\s]+/)
+    .filter(Boolean)
+    .map(part => part.toLocaleLowerCase("ro-RO"));
+  const syllableSpeech = parts.join(", ");
+  const utterance = makeUtterance(syllableSpeech,Math.max(0.5,Number(speedRange.value)*0.78));
+  utterance.onend = stopPlaying;
+  utterance.onerror = stopPlaying;
+  window.speechSynthesis.speak(utterance);
 }
 
-words.forEach(([word, translation]) => {
-  const row = document.createElement('div');
-  row.className = 'word-row';
+function setTranslations(translations,lang){
+  const isRtl = ["ar","ckb","dv","fa","he","ms-Arab","pa-Arab","ps","sd","ug","ur"].includes(lang);
+  translations.forEach((translation,index) => {
+    translationSpans[index].textContent = translation;
+    translationSpans[index].dir = isRtl ? "rtl" : "ltr";
+    translationSpans[index].lang = lang;
+  });
+}
 
-  const textWrap = document.createElement('div');
-  textWrap.className = 'word-text-wrap';
+function applyUi(ui,lang){
+  currentUi = ui;
+  const isRtl = ["ar","ckb","dv","fa","he","ms-Arab","pa-Arab","ps","sd","ug","ur"].includes(lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRtl ? "rtl" : "ltr";
+  document.querySelectorAll("[data-ui]").forEach(element => {
+    const value = ui[element.dataset.ui];
+    if(value) element.textContent = value;
+  });
+  document.querySelectorAll(".play-btn").forEach((button,index) => {
+    button.setAttribute("aria-label",`${ui.listenPrefix}: ${items[index].ro}`);
+  });
+  document.querySelector(".brand img").alt = ui.logoAlt;
+  document.querySelector(".language-chips").setAttribute("aria-label",ui.availableLanguagesAria);
+  document.getElementById("asiaGroup").label = ui.asiaGroup;
+  document.getElementById("africaGroup").label = ui.africaGroup;
+  voiceSelect.dir = "ltr";
+  modeNote.textContent = isSyllableMode ? ui.syllableNote : ui.normalNote;
+  updateLanguageSummary();
+}
 
-  const span = document.createElement('span');
-  span.className = 'word-text';
-  span.textContent = word;
+function renderLanguageChips(){
+  const container = document.querySelector(".language-chips");
+  container.innerHTML = "";
+  [...langSelect.options].forEach(option => {
+    const chip = document.createElement("span");
+    chip.className = "language-chip";
+    chip.textContent = option.textContent.split(" — ")[0];
+    container.appendChild(chip);
+  });
+  updateLanguageSummary();
+}
 
-  const transSpan = document.createElement('span');
-  transSpan.className = 'word-translation';
-  transSpan.textContent = translation;
+function updateLanguageSummary(){
+  const summary = document.querySelector("[data-ui=availableLanguages]");
+  summary.textContent = `${currentUi.availableLanguages} (${langSelect.options.length})`;
+}
 
-  textWrap.appendChild(span);
-  textWrap.appendChild(transSpan);
+function cacheKey(lang){ return `firstRomanianWords.translation.v5.${lang}`; }
 
-  const btn = document.createElement('button');
-  btn.className = 'play-btn';
-  btn.setAttribute('aria-label', 'Ascultă: ' + word);
-  btn.innerHTML = '▶';
-  btn.addEventListener('click', () => speak(word, btn));
+async function fetchTranslation(text,targetLang){
+  const brandToken = "ZXQWELCOMEHUBQXZ";
+  const protectedText = text.replaceAll("WelcomeHub",brandToken);
+  const endpoint = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=ro&tl="
+    + encodeURIComponent(targetLang) + "&dt=t&q=" + encodeURIComponent(protectedText);
+  const response = await fetch(endpoint);
+  if(!response.ok) throw new Error("Translation unavailable");
+  const data = await response.json();
+  return data[0].map(part => part[0]).join("").replace(new RegExp(brandToken,"gi"),"WelcomeHub");
+}
 
-  row.appendChild(textWrap);
-  row.appendChild(btn);
-  listEl.appendChild(row);
+async function translateList(lang){
+  const requestId = ++translationRequest;
+  translationStatus.classList.remove("error");
+  if(lang === "en"){
+    setTranslations(items.map(item => item.en),"en");
+    applyUi(UI_EN,"en");
+    translationStatus.textContent = UI_EN.statusEnglish;
+    return;
+  }
+  if(lang === "ro"){
+    setTranslations(items.map(item => item.ro),"ro");
+    applyUi(UI_RO,"ro");
+    translationStatus.textContent = UI_RO.statusRomanian;
+    return;
+  }
+
+  try{
+    const cached = JSON.parse(localStorage.getItem(cacheKey(lang)) || "null");
+    if(cached && Array.isArray(cached.items) && cached.items.length === items.length && cached.ui){
+      setTranslations(cached.items,lang);
+      applyUi(cached.ui,lang);
+      translationStatus.textContent = cached.ui.statusCached;
+      return;
+    }
+  }catch(error){ /* Continuăm fără memoria locală. */ }
+
+  translationStatus.textContent = UI_RO.statusLoading;
+  try{
+    const translated = new Array(items.length);
+    const uiKeys = Object.keys(UI_RO);
+    const translatedUi = {};
+    const jobs = [
+      ...items.map((item,index) => ({type:"item",index,text:item.ro})),
+      ...uiKeys.map(key => ({type:"ui",key,text:UI_RO[key]}))
+    ];
+    let nextIndex = 0;
+    async function worker(){
+      while(nextIndex < jobs.length){
+        const job = jobs[nextIndex++];
+        const result = await fetchTranslation(job.text,lang);
+        if(requestId !== translationRequest) return;
+        if(job.type === "item"){
+          translated[job.index] = result;
+          translationSpans[job.index].textContent = result;
+        }else{
+          translatedUi[job.key] = result;
+        }
+      }
+    }
+    await Promise.all(Array.from({length:6},worker));
+    if(requestId !== translationRequest) return;
+    setTranslations(translated,lang);
+    applyUi(translatedUi,lang);
+    try{ localStorage.setItem(cacheKey(lang),JSON.stringify({items:translated,ui:translatedUi})); }catch(error){ /* Cache opțional. */ }
+    translationStatus.textContent = translatedUi.statusReady;
+  }catch(error){
+    if(requestId !== translationRequest) return;
+    translationStatus.textContent = currentUi.statusError || UI_RO.statusError;
+    translationStatus.classList.add("error");
+  }
+}
+
+langSelect.addEventListener("change",() => {
+  try{ localStorage.setItem("firstRomanianWords.language",langSelect.value); }catch(error){ /* Preferință opțională. */ }
+  translateList(langSelect.value);
 });
+
+renderList();
+renderLanguageChips();
+populateVoices();
+if("onvoiceschanged" in speechSynthesis) speechSynthesis.onvoiceschanged = populateVoices;
+try{
+  const savedLanguage = localStorage.getItem("firstRomanianWords.language");
+  if(savedLanguage && [...langSelect.options].some(option => option.value === savedLanguage)){
+    langSelect.value = savedLanguage;
+  }
+}catch(error){ /* Site-ul funcționează și fără preferință salvată. */ }
+translateList(langSelect.value);
 </script>
 </body>
 </html>
