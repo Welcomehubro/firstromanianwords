@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuvinte și expresii în limba română</title>
+<style>
+  :root{
+    --bg:#fafaf7;
+    --ink:#1c1c1a;
+    --muted:#68665f;
+    --line:#e5e2da;
+    --accent:#c1272d; /* roșu steag */
+    --accent-dark:#961f24;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+    padding:24px 16px 64px;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+  h1{
+    font-size:1.6rem;
+    margin:0 0 4px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .sub{color:var(--muted);margin:0 0 20px;font-size:0.95rem;}
+
+  details{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 16px;
+    margin-bottom:14px;
+  }
+  details summary{
+    cursor:pointer;
+    font-weight:600;
+    font-size:0.92rem;
+  }
+  details ol{margin:10px 0 4px;padding-left:20px;font-size:0.9rem;color:var(--muted);}
+
+  .controls{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    display:grid;
+    gap:14px;
+  }
+  .control-row{display:flex;flex-direction:column;gap:6px;}
+  .control-row label{font-size:0.85rem;font-weight:600;color:var(--muted);}
+  select, input[type=range]{
+    width:100%;
+    font-size:1rem;
+  }
+  select{
+    padding:8px 10px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  .speed-readout{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.8rem;
+    color:var(--muted);
+  }
+  .speed-value{font-weight:700;color:var(--ink);}
+
+  .list{
+    display:grid;
+    gap:8px;
+  }
+  .word-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+  }
+  .word-text{font-size:1.05rem;}
+  .play-btn{
+    flex:0 0 auto;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:none;
+    background:var(--accent);
+    color:#fff;
+    font-size:1.1rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:transform .08s ease, background .15s ease;
+  }
+  .play-btn:hover{background:var(--accent-dark);}
+  .play-btn:active{transform:scale(0.92);}
+  .play-btn.playing{background:var(--accent-dark);}
+
+  .footer-note{
+    margin-top:28px;
+    font-size:0.8rem;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  @media (min-width:520px){
+    .controls{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>🇷🇴 Cuvinte și expresii în limba română</h1>
+  <p class="sub">Apasă pe butonul roșu pentru a asculta pronunția fiecărui cuvânt sau a fiecărei expresii.</p>
+
+  <details>
+    <summary>🇬🇧 Voice sounds robotic? Get a natural-sounding voice</summary>
+    <p style="font-size:0.9rem;color:var(--muted);margin-top:8px;">Most systems install a basic, robotic-sounding voice by default. A much more natural "Enhanced" / "Premium" version usually exists for free.</p>
+    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On Mac (Safari / Chrome):</p>
+    <ol>
+      <li>System Settings → Accessibility → Spoken Content</li>
+      <li>System Voice → Manage Voices</li>
+      <li>Find Romanian, download the "Enhanced"/"Premium" version</li>
+      <li>Reload this page and pick it from the dropdown below</li>
+    </ol>
+    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On Windows (Chrome / Edge):</p>
+    <ol>
+      <li>Settings → Time & Language → Speech</li>
+      <li>Manage voices → Add voices → search Romanian</li>
+      <li>Install, restart the browser, pick it below</li>
+    </ol>
+    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On Android:</p>
+    <ol>
+      <li>Settings → General management → Text-to-speech</li>
+      <li>Select Google Text-to-speech Engine</li>
+      <li>Gear icon → Install voice data → Romanian</li>
+    </ol>
+    <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">On iPhone (Safari):</p>
+    <ol>
+      <li>Settings → Accessibility → Spoken Content → Voices → Romanian</li>
+      <li>Download an "Enhanced"/"Premium" voice</li>
+      <li>Reload this page and pick it below</li>
+    </ol>
+  </details>
+
+  <div class="controls">
+    <div class="control-row">
+      <label for="voiceSelect">🎙️ Voce</label>
+      <select id="voiceSelect"></select>
+    </div>
+    <div class="control-row">
+      <label for="speedRange">🐢 Viteză redare</label>
+      <input type="range" id="speedRange" min="0.4" max="1.2" step="0.05" value="0.85">
+      <div class="speed-readout">
+        <span>🐌 Pe silabe</span>
+        <span class="speed-value" id="speedValue">0.85x</span>
+        <span>🔊 Normal</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <p class="footer-note">Se folosește vocea nativă a browser-ului tău pentru pronunție. Pentru cel mai bun rezultat, deschide acest fișier în Chrome sau Safari, cu volumul pornit.</p>
+</div>
+
+<script>
+const words = [
+"Bună","Mulțumesc","Da","Nu","Te rog","Cu plăcere","Scuză-mă","Îmi pare rău",
+"Ce faci?","Sunt bine","Bună dimineața","Bună ziua","Bună seara","Noapte bună",
+"La revedere","Ne vedem mâine","Numele meu este","Cum te cheamă?","Câți ani ai?",
+"Unde este?","Cât costă?","Aici","Acolo","Frumos","Mare","Mic","Rapid","Încet",
+"Vreau","Nu vreau","Ajutor","Prieteni","Dragoste","Familie","Bucurie","Noroc",
+"Muncă","Casă","Vacanță","Mâncare","Apă","Cafea","Ceai","Berea","Vreau o cafea",
+"Un moment","Așteaptă","Hai să mergem","Foarte bine","Excelent","E minunat",
+"Super","Bravo","De acord","În regulă","Nu știu","Nicio problemă","Fii atent",
+"Înțeleg","Nu înțeleg","Păcat","Mulți ani trăiască","Felicitări","Cum te simți?",
+"Mi-e foame","Mi-e sete","Unde este toaleta?","Cu cine vorbești?","Când?","De ce?",
+"Cum?","Îmi place","Nu-mi place","Am înțeles","Nu contează","Ai dreptate",
+"Ești sigur?","Poți să mă ajuți?","Am nevoie de ajutor","Unde locuiești?",
+"Câți ani ai?","Cât timp?","Unde lucrezi?","Câți suntem?","Este frig","Este cald",
+"Ce zi este azi?","Ce oră este?","Pot să vin?","Unde mergem?","Este aproape",
+"Este departe","Mă simt bine","Nu mă simt bine","Sunt obosit","Este corect",
+"Este greșit"
+];
+
+const listEl = document.getElementById('list');
+const voiceSelect = document.getElementById('voiceSelect');
+const speedRange = document.getElementById('speedRange');
+const speedValue = document.getElementById('speedValue');
+
+let voices = [];
+let romanianVoices = [];
+
+function populateVoices(){
+  voices = window.speechSynthesis.getVoices();
+  romanianVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('ro'));
+
+  voiceSelect.innerHTML = '';
+  const listToShow = romanianVoices.length ? romanianVoices : voices;
+
+  listToShow.forEach((v, i) => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = `${v.name} (${v.lang})`;
+    voiceSelect.appendChild(opt);
+  });
+
+  if(!romanianVoices.length){
+    const note = document.createElement('option');
+    note.disabled = true;
+    note.textContent = '— nicio voce română găsită, se folosește vocea implicită —';
+    voiceSelect.prepend(note);
+  }
+}
+
+populateVoices();
+if(speechSynthesis.onvoiceschanged !== undefined){
+  speechSynthesis.onvoiceschanged = populateVoices;
+}
+
+speedRange.addEventListener('input', () => {
+  speedValue.textContent = parseFloat(speedRange.value).toFixed(2) + 'x';
+});
+
+function speak(text, btn){
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.play-btn.playing').forEach(b => b.classList.remove('playing'));
+
+  const utter = new SpeechSynthesisUtterance(text);
+  const selectedName = voiceSelect.value;
+  const chosen = voices.find(v => v.name === selectedName);
+  if(chosen) utter.voice = chosen;
+  utter.lang = chosen ? chosen.lang : 'ro-RO';
+  utter.rate = parseFloat(speedRange.value);
+
+  btn.classList.add('playing');
+  utter.onend = () => btn.classList.remove('playing');
+  utter.onerror = () => btn.classList.remove('playing');
+
+  window.speechSynthesis.speak(utter);
+}
+
+words.forEach(word => {
+  const row = document.createElement('div');
+  row.className = 'word-row';
+
+  const span = document.createElement('span');
+  span.className = 'word-text';
+  span.textContent = word;
+
+  const btn = document.createElement('button');
+  btn.className = 'play-btn';
+  btn.setAttribute('aria-label', 'Ascultă: ' + word);
+  btn.innerHTML = '▶';
+  btn.addEventListener('click', () => speak(word, btn));
+
+  row.appendChild(span);
+  row.appendChild(btn);
+  listEl.appendChild(row);
+});
+</script>
+</body>
+</html>
