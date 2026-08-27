@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn 50 Romanian medical and emergency expressions with audio and an interactive body map.">
+  <title>Romanian for Medical Care and Emergencies</title>
+  <style>
+    :root{--bg:#f7f7f3;--card:#fff;--ink:#20201d;--muted:#69675f;--line:#dedbd2;--blue:#b9232a;--blue2:#8e1b20;--teal:#b9232a;--red:#b9232a;--soft:#fff0f0;--focus:#1b65b9}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+    button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+    .wrap{width:min(780px,calc(100% - 28px));margin:auto;padding:24px 0 56px}
+    .brand{display:flex;justify-content:center;height:84px;overflow:hidden;margin-bottom:12px}.brand img{width:430px;max-width:68%;height:auto;object-fit:contain}
+    .hero{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+    h1{max-width:760px;margin:0;font-size:clamp(1.5rem,4vw,2rem);line-height:1.2;letter-spacing:0;color:var(--ink)}
+    .lead{max-width:750px;margin:14px 0 0;color:var(--muted);font-size:1.05rem}
+    .emergency{display:flex;gap:10px;align-items:center;width:max-content;max-width:100%;margin-top:20px;padding:10px 14px;border-radius:999px;background:#fff0f1;color:#8f1f27;font-weight:750}
+    .section{margin-top:28px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:14px}.section h2{margin:0;font-size:1.3rem;color:var(--ink)}.hint{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+    .body-panel{display:grid;grid-template-columns:minmax(360px,1.2fr) minmax(280px,.8fr);gap:18px;align-items:stretch}
+    .body-card,.result-card,.controls,.category{background:var(--card);border:1px solid var(--line);border-radius:14px}
+    .body-card{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px;min-height:540px}
+    .figure-wrap{position:relative;min-height:500px;border-radius:12px;background:#faf9f6;overflow:hidden}.view-label{position:absolute;top:10px;left:12px;font-weight:800;color:var(--blue2);z-index:4}
+    .person{position:absolute;left:50%;top:45px;transform:translateX(-50%);width:150px;height:425px;color:#cbdde3}
+    .head-shape{position:absolute;left:48px;top:0;width:54px;height:62px;border-radius:48% 48% 45% 45%;background:currentColor;border:3px solid #7696a3}
+    .neck-shape{position:absolute;left:64px;top:56px;width:22px;height:26px;background:currentColor;border-left:3px solid #7696a3;border-right:3px solid #7696a3}
+    .torso-shape{position:absolute;left:31px;top:78px;width:88px;height:145px;border-radius:35px 35px 22px 22px;background:currentColor;border:3px solid #7696a3}
+    .arm-shape{position:absolute;top:90px;width:28px;height:180px;border-radius:18px;background:currentColor;border:3px solid #7696a3}.arm-shape.left{left:3px;transform:rotate(4deg)}.arm-shape.right{right:3px;transform:rotate(-4deg)}
+    .leg-shape{position:absolute;top:210px;width:39px;height:195px;border-radius:16px;background:currentColor;border:3px solid #7696a3}.leg-shape.left{left:34px}.leg-shape.right{right:34px}
+    .foot-shape{position:absolute;top:392px;width:52px;height:24px;border-radius:18px 18px 8px 8px;background:currentColor;border:3px solid #7696a3}.foot-shape.left{left:20px}.foot-shape.right{right:20px}
+    .spot{position:absolute;z-index:5;min-width:34px;height:34px;padding:0 9px;border:2px solid #fff;border-radius:999px;background:var(--red);color:#fff;font-weight:850;box-shadow:0 2px 10px rgba(103,24,30,.28)}.spot:hover,.spot.active{transform:scale(1.08);background:var(--blue2)}
+    .front .head{top:59px;left:50%;transform:translateX(-50%)}.front .head:hover,.front .head.active{transform:translateX(-50%) scale(1.08)}
+    .front .throat{top:97px;left:50%;transform:translateX(-50%)}.front .throat:hover,.front .throat.active{transform:translateX(-50%) scale(1.08)}
+    .front .chest{top:157px;left:50%;transform:translateX(-50%)}.front .chest:hover,.front .chest.active{transform:translateX(-50%) scale(1.08)}
+    .front .stomach{top:225px;left:50%;transform:translateX(-50%)}.front .stomach:hover,.front .stomach.active{transform:translateX(-50%) scale(1.08)}
+    .front .arm{top:172px;left:calc(50% - 75px)}.front .hand{top:265px;left:calc(50% - 75px)}
+    .front .leg{top:292px;left:calc(50% + 30px)}.front .knee{top:355px;left:calc(50% + 30px)}
+    .back .backspot{top:165px;left:50%;transform:translateX(-50%)}.back .backspot:hover,.back .backspot.active{transform:translateX(-50%) scale(1.08)}
+    .result-card{padding:24px;display:flex;flex-direction:column;justify-content:center;min-height:300px}.eyebrow{margin:0 0 5px;color:var(--teal);font-size:.78rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+    .result-ro{margin:0;color:var(--blue2);font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.12}.result-en{margin:10px 0 0;color:var(--muted);font-size:1.1rem}.result-part{margin:22px 0 0;padding-top:18px;border-top:1px solid var(--line)}
+    .listen-main{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:24px;min-height:50px;border:0;border-radius:12px;background:var(--red);color:#fff;font-weight:800}.listen-main:hover{background:#9e222b}
+    .controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:16px;margin-top:18px}.control{display:flex;flex-direction:column;gap:7px}.control label,.control-title{font-size:.88rem;font-weight:700;color:var(--ink)}
+    input[type="search"],select{width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;color:var(--ink);background:#fff}
+    .switch{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:10px;background:#eeece6}.mode{min-height:36px;border:0;border-radius:8px;background:transparent;color:var(--ink);font-weight:700}.mode.active{background:var(--blue);color:#fff}
+    input[type="range"]{width:100%;accent-color:var(--red)}.speed-line{display:flex;justify-content:space-between;color:var(--muted);font-size:.76rem}
+    .voice-help{margin-top:14px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#fff}.voice-help summary{cursor:pointer;font-weight:800;color:var(--ink)}.voice-help p{margin:12px 0 8px;color:var(--muted)}.voice-help ul{margin:8px 0 0;padding-left:22px;color:var(--muted)}.voice-help li+li{margin-top:6px}
+    .category{padding:18px;margin-top:14px}.category h3{margin:0 0 12px;color:var(--blue2);font-size:1.15rem}.word-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .word{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}.word-copy{min-width:0}.ro{display:block;font-weight:780;color:var(--ink)}.syllable-view .ro{color:var(--red)}.en{display:block;margin-top:2px;color:var(--muted);font-size:.84rem}
+    .play{flex:0 0 42px;width:42px;height:42px;border:0;border-radius:50%;background:var(--red);color:#fff;font-size:1.05rem}.play:hover,.play.playing{background:var(--blue2)}.hidden{display:none!important}
+    .empty{padding:28px;text-align:center;color:var(--muted)}footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.8rem}.owner{margin-top:10px;padding:12px;border:1px solid #e5bcc0;border-radius:12px;background:#fff1f2;color:#781e25}
+    @media(max-width:850px){.body-panel{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.word-list{grid-template-columns:1fr}}
+    @media(max-width:620px){.wrap{width:min(100% - 18px,1100px);padding-top:14px}.hero{padding:20px}.body-card{grid-template-columns:1fr;min-height:auto}.figure-wrap{min-height:520px}.body-panel{display:block}.result-card{margin-top:14px}.section-head{align-items:start;flex-direction:column}.emergency{border-radius:12px}.brand{height:56px}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand"><img src="../welcomehub-logo-transparent.png" alt="WelcomeHub"></div>
+  <header class="hero">
+    <h1>Romanian for Medical Care and Emergencies</h1>
+    <p class="lead">Learn 50 useful Romanian words and expressions. Listen to the pronunciation and use the interactive body map to explain where you feel pain.</p>
+    <div class="emergency"><span aria-hidden="true">☎</span> For a serious or life-threatening emergency, call 112.</div>
+  </header>
+
+  <section class="section" aria-labelledby="bodyTitle">
+    <div class="section-head"><div><h2 id="bodyTitle">Where does it hurt?</h2><p class="hint">Select a body part to hear the Romanian phrase.</p></div></div>
+    <div class="body-panel">
+      <div class="body-card">
+        <div class="figure-wrap front" aria-label="Front of the body">
+          <span class="view-label">Front</span>
+          <div class="person" aria-hidden="true"><i class="head-shape"></i><i class="neck-shape"></i><i class="torso-shape"></i><i class="arm-shape left"></i><i class="arm-shape right"></i><i class="leg-shape left"></i><i class="leg-shape right"></i><i class="foot-shape left"></i><i class="foot-shape right"></i></div>
+          <button class="spot head" data-part="head" aria-label="Head">●</button>
+          <button class="spot throat" data-part="throat" aria-label="Throat">●</button>
+          <button class="spot chest" data-part="chest" aria-label="Chest">●</button>
+          <button class="spot stomach" data-part="stomach" aria-label="Stomach">●</button>
+          <button class="spot arm" data-part="arm" aria-label="Arm">●</button>
+          <button class="spot hand" data-part="hand" aria-label="Hand">●</button>
+          <button class="spot leg" data-part="leg" aria-label="Leg">●</button>
+          <button class="spot knee" data-part="knee" aria-label="Knee">●</button>
+        </div>
+        <div class="figure-wrap back" aria-label="Back of the body">
+          <span class="view-label">Back</span>
+          <div class="person" aria-hidden="true"><i class="head-shape"></i><i class="neck-shape"></i><i class="torso-shape"></i><i class="arm-shape left"></i><i class="arm-shape right"></i><i class="leg-shape left"></i><i class="leg-shape right"></i><i class="foot-shape left"></i><i class="foot-shape right"></i></div>
+          <button class="spot backspot" data-part="back" aria-label="Back">●</button>
+        </div>
+      </div>
+      <aside class="result-card" aria-live="polite">
+        <p class="eyebrow">Selected body part</p>
+        <h3 class="result-ro" id="bodyPhrase">Mă doare capul.</h3>
+        <p class="result-en" id="bodyEnglish">My head hurts.</p>
+        <p class="result-part"><strong id="partRomanian">Cap</strong> <span id="partEnglish">— Head</span></p>
+        <button class="listen-main" id="bodyListen"><span aria-hidden="true">▶</span> Listen in Romanian</button>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="wordsTitle">
+    <div class="section-head"><div><h2 id="wordsTitle">50 words and expressions</h2><p class="hint">Read and listen at your own pace.</p></div></div>
+    <div class="controls">
+      <div class="control"><label for="langSelect">Translation language</label>
+      <select id="langSelect">
+      <option value="en">🇬🇧 English — Engleză</option>
+      <option value="ro">🇷🇴 Română — Romanian</option>
+      <optgroup label="Asia" id="asiaGroup">
+      <option value="si">🇱🇰 සිංහල — Sinhala (Sri Lanka)</option>
+      <option value="ta">🇱🇰 தமிழ் — Tamilă (Sri Lanka / India)</option>
+      <option value="ace">🌏 Bahsa Acèh — Acehneză</option>
+      <option value="ar">🌏 العربية — Arabă</option>
+      <option value="hy">🌏 Հայերեն — Armeană</option>
+      <option value="as">🌏 অসমীয়া — Asameză</option>
+      <option value="awa">🌏 अवधी — Awadhi</option>
+      <option value="az">🌏 Azərbaycanca — Azeră</option>
+      <option value="ban">🌏 Basa Bali — Balineză</option>
+      <option value="btx">🌏 Karo — Batak Karo</option>
+      <option value="bts">🌏 Simalungun — Batak Simalungun</option>
+      <option value="bbc">🌏 Toba — Batak Toba</option>
+      <option value="bn">🌏 বাংলা — Bengali</option>
+      <option value="bew">🌏 Betawi — Betawi</option>
+      <option value="bho">🌏 भोजपुरी — Bhojpuri</option>
+      <option value="bik">🌏 Bikol — Bikol</option>
+      <option value="bua">🌏 Буряад — Buriată</option>
+      <option value="my">🌏 မြန်မာ — Birmană</option>
+      <option value="yue">🌏 粵語 — Cantoneză</option>
+      <option value="ceb">🌏 Cebuano — Cebuano</option>
+      <option value="zh-CN">🌏 简体中文 — Chineză simplificată</option>
+      <option value="zh-TW">🌏 繁體中文 — Chineză tradițională</option>
+      <option value="cv">🌏 Чӑвашла — Ciuvașă</option>
+      <option value="dv">🌏 ދިވެހި — Divehi</option>
+      <option value="doi">🌏 डोगरी — Dogri</option>
+      <option value="dz">🌏 རྫོང་ཁ — Dzongkha</option>
+      <option value="fil">🌏 Filipino — Filipineză</option>
+      <option value="ka">🌏 ქართული — Georgiană</option>
+      <option value="gu">🌏 ગુજરાતી — Gujarati</option>
+      <option value="cnh">🌏 Laiholh — Hakha Chin</option>
+      <option value="he">🌏 עברית — Ebraică</option>
+      <option value="hil">🌏 Ilonggo — Hiligaynon</option>
+      <option value="hi">🌏 हिन्दी — Hindi</option>
+      <option value="hmn">🌏 Hmoob — Hmong</option>
+      <option value="ilo">🌏 Ilokano — Ilocano</option>
+      <option value="id">🌏 Bahasa Indonesia — Indoneziană</option>
+      <option value="ja">🌏 日本語 — Japoneză</option>
+      <option value="jv">🌏 Basa Jawa — Javaneză</option>
+      <option value="kn">🌏 ಕನ್ನಡ — Kannada</option>
+      <option value="pam">🌏 Kapampangan — Kapampangan</option>
+      <option value="kk">🌏 Қазақша — Kazahă</option>
+      <option value="km">🌏 ខ្មែរ — Khmeră</option>
+      <option value="ko">🌏 한국어 — Coreeană</option>
+      <option value="gom">🌏 कोंकणी — Konkani</option>
+      <option value="ku">🌏 Kurdî — Kurdă (Kurmanji)</option>
+      <option value="ckb">🌏 کوردی — Kurdă (Sorani)</option>
+      <option value="ky">🌏 Кыргызча — Kârgâză</option>
+      <option value="lo">🌏 ລາວ — Laoțiană</option>
+      <option value="mai">🌏 मैथिली — Maithili</option>
+      <option value="mak">🌏 Basa Mangkasara — Makassar</option>
+      <option value="ms">🌏 Bahasa Melayu — Malaeză</option>
+      <option value="ms-Arab">🌏 بهاس ملايو — Malaeză (Jawi)</option>
+      <option value="ml">🌏 മലയാളം — Malayalam</option>
+      <option value="mr">🌏 मराठी — Marathi</option>
+      <option value="mni-Mtei">🌏 ꯃꯤꯇꯩꯂꯣꯟ — Meitei</option>
+      <option value="min">🌏 Baso Minang — Minangkabau</option>
+      <option value="lus">🌏 Mizo ṭawng — Mizo</option>
+      <option value="mn">🌏 Монгол — Mongolă</option>
+      <option value="ne">🌏 नेपाली — Nepaleză</option>
+      <option value="new">🌏 नेपाल भाषा — Newari</option>
+      <option value="or">🌏 ଓଡ଼ିଆ — Odia</option>
+      <option value="pag">🌏 Pangasinan — Pangasinan</option>
+      <option value="ps">🌏 پښتو — Paștună</option>
+      <option value="fa">🌏 فارسی — Persană</option>
+      <option value="pa">🌏 ਪੰਜਾਬੀ — Punjabi</option>
+      <option value="pa-Arab">🌏 پنجابی — Punjabi (Shahmukhi)</option>
+      <option value="sa">🌏 संस्कृतम् — Sanscrită</option>
+      <option value="shn">🌏 လိၵ်ႈတႆး — Shan</option>
+      <option value="sd">🌏 سنڌي — Sindhi</option>
+      <option value="su">🌏 Basa Sunda — Sundaneză</option>
+      <option value="tg">🌏 Тоҷикӣ — Tadjică</option>
+      <option value="tt">🌏 Татарча — Tătară</option>
+      <option value="te">🌏 తెలుగు — Telugu</option>
+      <option value="tet">🌏 Tetun — Tetum</option>
+      <option value="th">🌏 ไทย — Thailandeză</option>
+      <option value="tr">🌏 Türkçe — Turcă</option>
+      <option value="tk">🌏 Türkmençe — Turkmenă</option>
+      <option value="ur">🌏 اردو — Urdu</option>
+      <option value="ug">🌏 ئۇيغۇرچە — Uigură</option>
+      <option value="uz">🌏 Oʻzbekcha — Uzbekă</option>
+      <option value="vi">🌏 Tiếng Việt — Vietnameză</option>
+      </optgroup>
+      <optgroup label="Africa" id="africaGroup">
+      <option value="ach">🌍 Acholi — Acholi</option>
+      <option value="af">🌍 Afrikaans — Afrikaans</option>
+      <option value="alz">🌍 Alur — Alur</option>
+      <option value="am">🌍 አማርኛ — Amharică</option>
+      <option value="bm">🌍 Bamanankan — Bambara</option>
+      <option value="bem">🌍 Ichibemba — Bemba</option>
+      <option value="ny">🌍 Chichewa — Chichewa</option>
+      <option value="din">🌍 Thuɔŋjäŋ — Dinka</option>
+      <option value="dov">🌍 Dombe — Dombe</option>
+      <option value="ee">🌍 Eʋegbe — Ewe</option>
+      <option value="ff">🌍 Fulfulde — Fulfulde</option>
+      <option value="gaa">🌍 Gã — Ga</option>
+      <option value="lg">🌍 Luganda — Ganda</option>
+      <option value="ha">🌍 Hausa — Hausa</option>
+      <option value="ig">🌍 Igbo — Igbo</option>
+      <option value="cgg">🌍 Rukiga — Kiga</option>
+      <option value="rw">🌍 Kinyarwanda — Kinyarwanda</option>
+      <option value="ktu">🌍 Kituba — Kituba</option>
+      <option value="kri">🌍 Krio — Krio</option>
+      <option value="ln">🌍 Lingála — Lingala</option>
+      <option value="luo">🌍 Dholuo — Luo</option>
+      <option value="mg">🌍 Malagasy — Malgașă</option>
+      <option value="nr">🌍 isiNdebele — Ndebele de Sud</option>
+      <option value="nso">🌍 Sepedi — Sotho de Nord</option>
+      <option value="nus">🌍 Thok Naath — Nuer</option>
+      <option value="om">🌍 Afaan Oromoo — Oromo</option>
+      <option value="rn">🌍 Kirundi — Rundi</option>
+      <option value="sg">🌍 Sängö — Sango</option>
+      <option value="st">🌍 Sesotho — Sotho</option>
+      <option value="crs">🌍 Kreol Seselwa — Creolă din Seychelles</option>
+      <option value="sn">🌍 chiShona — Shona</option>
+      <option value="so">🌍 Soomaali — Somaleză</option>
+      <option value="sw">🌍 Kiswahili — Swahili</option>
+      <option value="ss">🌍 siSwati — Swati</option>
+      <option value="ti">🌍 ትግርኛ — Tigrinya</option>
+      <option value="ts">🌍 Xitsonga — Tsonga</option>
+      <option value="tn">🌍 Setswana — Tswana</option>
+      <option value="ak">🌍 Twi — Twi (Akan)</option>
+      <option value="xh">🌍 isiXhosa — Xhosa</option>
+      <option value="yo">🌍 Yorùbá — Yoruba</option>
+      <option value="zu">🌍 isiZulu — Zulu</option>
+      </optgroup>
+      </select>
+      </div>
+      <div class="control"><label for="voiceSelect">Romanian voice</label><select id="voiceSelect"><option value="">Automatic Romanian voice</option></select></div>
+      <div class="control"><span class="control-title">Playback mode</span><div class="switch"><button class="mode active" id="normalMode">Normal</button><button class="mode" id="syllableMode">By syllables</button></div></div>
+      <div class="control"><label for="speed">Pronunciation speed: <span id="speedValue">0.85×</span></label><input id="speed" type="range" min="0.55" max="1.05" step="0.05" value="0.85"><div class="speed-line"><span>Slower</span><span>Faster</span></div></div>
+    </div>
+    <details class="voice-help">
+      <summary>Does the voice sound too robotic?</summary>
+      <p>The site automatically selects the best Romanian voice available. You can also choose another installed Romanian voice from the <strong>Romanian voice</strong> list above. For a more natural result, install an Enhanced, Premium or Natural Romanian voice, then reload the page.</p>
+      <ul>
+        <li><strong>iPhone/Mac:</strong> System Settings → Accessibility → Spoken Content → Voices.</li>
+        <li><strong>Android:</strong> Settings → Text-to-speech → Install voice data → Romanian.</li>
+        <li><strong>Windows:</strong> Settings → Time &amp; language → Speech → Add voices → Romanian.</li>
+      </ul>
+    </details>
+    <div id="vocabulary"></div>
+  </section>
+
+  <footer>
+    <p>Audio uses a Romanian voice installed on your browser or device.</p>
+    <div class="owner"><strong>© WelcomeHub. Proprietary material.</strong><br>This material may not be reproduced or distributed outside the organisation.</div>
+  </footer>
+</main>
+
+<script>
+const groups=[
+ {title:"Emergencies and requesting help",items:[
+  ["Ajutor!","A-ju-tor!","Help!"],["Sunați la 112.","Su-nați la u-nu, u-nu, doi.","Call 112."],["Este o urgență.","Es-te o ur-gen-ță.","It is an emergency."],["Nu este o urgență.","Nu es-te o ur-gen-ță.","It is not an emergency."],["Am nevoie de o ambulanță.","Am ne-vo-ie de o am-bu-lan-ță.","I need an ambulance."],["Chemați poliția.","Che-mați po-li-ți-a.","Call the police."],["Chemați pompierii.","Che-mați pom-pi-e-rii.","Call the fire brigade."],["Adresa este...","A-dre-sa es-te...","The address is..."],["Sunt la...","Sunt la...","I am at..."],["Nu vorbesc bine limba română.","Nu vor-besc bi-ne lim-ba ro-mâ-nă.","I do not speak Romanian well."]]},
+ {title:"Symptoms and medical information",items:[
+  ["Nu mă simt bine.","Nu mă simt bi-ne.","I do not feel well."],["Mă doare aici.","Mă doa-re a-ici.","It hurts here."],["Am febră.","Am fe-bră.","I have a fever."],["Nu pot să respir.","Nu pot să res-pir.","I cannot breathe."],["Amețesc.","A-me-țesc.","I feel dizzy."],["Persoana a leșinat.","Per-soa-na a le-și-nat.","The person has fainted."],["Persoana nu respiră normal.","Per-soa-na nu res-pi-ră nor-mal.","The person is not breathing normally."],["Sângerez.","Sân-ge-rez.","I am bleeding."],["Am o alergie la...","Am o a-ler-gi-e la...","I am allergic to..."],["Iau acest medicament.","Iau a-cest me-di-ca-ment.","I take this medicine."]]},
+ {title:"Accidents, injuries and pain",items:[
+  ["Am căzut.","Am că-zut.","I fell."],["M-am tăiat.","M-am tă-iat.","I cut myself."],["M-am ars.","M-am ars.","I burned myself."],["Am avut un accident.","Am a-vut un ac-ci-dent.","I had an accident."],["Mă doare capul.","Mă doa-re ca-pul.","My head hurts."],["Mă doare pieptul.","Mă doa-re piep-tul.","My chest hurts."],["Mă doare stomacul.","Mă doa-re sto-ma-cul.","My stomach hurts."],["Mă doare spatele.","Mă doa-re spa-te-le.","My back hurts."],["Mă doare mâna.","Mă doa-re mâ-na.","My hand or arm hurts."],["Mă doare piciorul.","Mă doa-re pi-cio-rul.","My leg or foot hurts."]]},
+ {title:"Healthcare services",items:[
+  ["Doctor de familie","Doc-tor de fa-mi-li-e","Family doctor"],["Farmacie","Far-ma-ci-e","Pharmacy"],["Spital","Spi-tal","Hospital"],["Cameră de gardă","Ca-me-ră de gar-dă","Emergency Department"],["Programare","Pro-gra-ma-re","Appointment"],["Rețetă","Re-țe-tă","Prescription"],["Medicament","Me-di-ca-ment","Medicine"],["Bilet de trimitere","Bi-let de tri-mi-te-re","Medical referral"],["Asigurare medicală","A-si-gu-ra-re me-di-ca-lă","Health insurance"],["Concediu medical","Con-ce-diu me-di-cal","Medical leave"]]},
+ {title:"Danger and personal safety",items:[
+  ["Sunt în pericol.","Sunt în pe-ri-col.","I am in danger."],["Cineva mă urmărește.","Ci-ne-va mă ur-mă-reș-te.","Someone is following me."],["Cineva m-a amenințat.","Ci-ne-va m-a a-me-nin-țat.","Someone threatened me."],["Cineva m-a atacat.","Ci-ne-va m-a a-ta-cat.","Someone attacked me."],["Mi s-a furat telefonul.","Mi s-a fu-rat te-le-fo-nul.","My phone was stolen."],["Mi-am pierdut actele.","Mi-am pier-dut ac-te-le.","I lost my documents."],["Nu atingeți persoana.","Nu a-tin-geți per-soa-na.","Do not touch the person."],["Nu mișcați persoana.","Nu miș-cați per-soa-na.","Do not move the person."],["Așteptați aici.","Aș-tep-tați a-ici.","Wait here."],["Ajutorul este pe drum.","A-ju-to-rul es-te pe drum.","Help is on the way."]]}
+];
+
+const bodyParts={
+ head:{part:"Cap",enPart:"Head",ro:"Mă doare capul.",syllables:"Mă doa-re ca-pul.",en:"My head hurts."},
+ throat:{part:"Gât",enPart:"Throat",ro:"Mă doare gâtul.",syllables:"Mă doa-re gâ-tul.",en:"My throat hurts."},
+ chest:{part:"Piept",enPart:"Chest",ro:"Mă doare pieptul.",syllables:"Mă doa-re piep-tul.",en:"My chest hurts."},
+ stomach:{part:"Stomac",enPart:"Stomach",ro:"Mă doare stomacul.",syllables:"Mă doa-re sto-ma-cul.",en:"My stomach hurts."},
+ back:{part:"Spate",enPart:"Back",ro:"Mă doare spatele.",syllables:"Mă doa-re spa-te-le.",en:"My back hurts."},
+ arm:{part:"Braț",enPart:"Arm",ro:"Mă doare brațul.",syllables:"Mă doa-re bra-țul.",en:"My arm hurts."},
+ hand:{part:"Mână",enPart:"Hand",ro:"Mă doare mâna.",syllables:"Mă doa-re mâ-na.",en:"My hand hurts."},
+ leg:{part:"Picior",enPart:"Leg",ro:"Mă doare piciorul.",syllables:"Mă doa-re pi-cio-rul.",en:"My leg hurts."},
+ knee:{part:"Genunchi",enPart:"Knee",ro:"Mă doare genunchiul.",syllables:"Mă doa-re ge-nun-chiul.",en:"My knee hurts."}
+};
+
+let syllableMode=false,currentBody=bodyParts.head,currentBodyKey="head",activePlay=null,translationToken=0;
+const vocabulary=document.getElementById("vocabulary");
+const speed=document.getElementById("speed"),speedValue=document.getElementById("speedValue");
+const langSelect=document.getElementById("langSelect"),voiceSelect=document.getElementById("voiceSelect");
+const translations=new Map();
+
+function populateVoices(){
+ if(!("speechSynthesis" in window))return;const selected=voiceSelect.value;
+ const voices=speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith("ro"));
+ voiceSelect.innerHTML='<option value="">Automatic Romanian voice</option>';
+ voices.forEach((v,i)=>{const option=document.createElement("option");option.value=v.name;option.textContent=v.name+(v.localService?"":" — online");voiceSelect.appendChild(option)});
+ if([...voiceSelect.options].some(o=>o.value===selected))voiceSelect.value=selected;
+}
+
+function speak(text,button){
+ if(!("speechSynthesis" in window))return alert("Audio pronunciation is not supported by this browser.");
+ speechSynthesis.cancel();
+ const spokenText=syllableMode?text.replace(/[?!.,]/g,"").split(/[-\s]+/).filter(Boolean).join(", "):text.replace(/112/g,"unu, unu, doi");
+ const utterance=new SpeechSynthesisUtterance(spokenText);utterance.lang="ro-RO";utterance.rate=syllableMode?Math.max(.5,Number(speed.value)*.78):Number(speed.value);
+ const voices=speechSynthesis.getVoices(),ro=voices.find(v=>v.name===voiceSelect.value)||voices.find(v=>v.lang.toLowerCase().startsWith("ro"));if(ro)utterance.voice=ro;
+ if(activePlay)activePlay.classList.remove("playing");activePlay=button||null;if(activePlay)activePlay.classList.add("playing");
+ utterance.onend=utterance.onerror=()=>{if(activePlay)activePlay.classList.remove("playing");activePlay=null};speechSynthesis.speak(utterance);
+}
+
+function render(){
+ vocabulary.innerHTML="";
+ groups.forEach(group=>{const matches=group.items;
+  const section=document.createElement("section");section.className="category";section.innerHTML=`<h3>${group.title}</h3><div class="word-list"></div>`;const list=section.querySelector(".word-list");
+  matches.forEach(item=>{const row=document.createElement("article");row.className="word";const spoken=syllableMode?item[1]:item[0];row.innerHTML=`<div class="word-copy"><span class="ro"></span><span class="en"></span></div><button class="play" aria-label="Listen to ${item[0]}">▶</button>`;row.querySelector(".ro").textContent=spoken;row.querySelector(".en").textContent=displayTranslation(item);row.querySelector(".play").onclick=e=>speak(spoken,e.currentTarget);list.appendChild(row)});
+  vocabulary.appendChild(section)});document.body.classList.toggle("syllable-view",syllableMode)
+}
+
+function selectBody(key,autoPlay=true){
+ currentBodyKey=key;currentBody=bodyParts[key];document.querySelectorAll(".spot").forEach(x=>x.classList.toggle("active",x.dataset.part===key));
+ document.getElementById("bodyPhrase").textContent=syllableMode?currentBody.syllables:currentBody.ro;document.getElementById("bodyEnglish").textContent=bodyTranslation(currentBody);document.getElementById("partRomanian").textContent=currentBody.part;document.getElementById("partEnglish").textContent="— "+bodyPartTranslation(currentBody);
+ if(autoPlay)speak(syllableMode?currentBody.syllables:currentBody.ro,document.getElementById("bodyListen"));
+}
+
+function displayTranslation(item){const lang=langSelect.value;if(lang==="ro")return item[0];if(lang==="en")return item[2];return translations.get(lang+"|"+item[0])||item[2]}
+function bodyTranslation(part){const lang=langSelect.value;if(lang==="ro")return part.ro;if(lang==="en")return part.en;return translations.get(lang+"|"+part.ro)||part.en}
+function bodyPartTranslation(part){const lang=langSelect.value;if(lang==="ro")return part.part;if(lang==="en")return part.enPart;return translations.get(lang+"|"+part.part)||part.enPart}
+async function translateText(text,lang){
+ const key=lang+"|"+text;if(translations.has(key))return translations.get(key);
+ const url="https://translate.googleapis.com/translate_a/single?client=gtx&sl=ro&tl="+encodeURIComponent(lang)+"&dt=t&q="+encodeURIComponent(text);
+ const response=await fetch(url);if(!response.ok)throw new Error("Translation unavailable");const data=await response.json();const translated=data[0].map(x=>x[0]).join("");translations.set(key,translated);return translated;
+}
+async function changeLanguage(){
+ const lang=langSelect.value,token=++translationToken;if(lang!=="en"&&lang!=="ro"){
+  const texts=[...new Set([...groups.flatMap(g=>g.items.map(i=>i[0])),...Object.values(bodyParts).flatMap(p=>[p.ro,p.part])])];
+  await Promise.allSettled(texts.map(t=>translateText(t,lang)));if(token!==translationToken)return;
+ }
+ render();selectBody(currentBodyKey,false);
+}
+
+document.querySelectorAll(".spot").forEach(btn=>btn.onclick=()=>selectBody(btn.dataset.part));
+document.getElementById("bodyListen").onclick=e=>speak(syllableMode?currentBody.syllables:currentBody.ro,e.currentTarget);
+document.getElementById("normalMode").onclick=()=>{syllableMode=false;document.getElementById("normalMode").classList.add("active");document.getElementById("syllableMode").classList.remove("active");render();selectBody(currentBodyKey,false)};
+document.getElementById("syllableMode").onclick=()=>{syllableMode=true;document.getElementById("syllableMode").classList.add("active");document.getElementById("normalMode").classList.remove("active");render();selectBody(currentBodyKey,false)};
+speed.oninput=()=>speedValue.textContent=Number(speed.value).toFixed(2)+"×";langSelect.onchange=changeLanguage;
+render();selectBody("head",false);populateVoices();if("speechSynthesis" in window)speechSynthesis.onvoiceschanged=populateVoices;
+</script>
+</body>
+</html>
