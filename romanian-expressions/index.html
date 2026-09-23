@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn 50 funny Romanian expressions with audio pronunciation, literal English translations and their real meanings.">
+<title>Funny Romanian expressions</title>
+<style>
+  :root{
+    --bg:#f7f7f3;
+    --ink:#20201d;
+    --muted:#69675f;
+    --line:#dedbd2;
+    --accent:#b9232a;
+    --accent-dark:#8e1b20;
+    --accent-soft:#fff0f0;
+    --card:#fff;
+    --focus:#1b65b9;
+    --warning:#8a5400;
+    --warning-soft:#fff7df;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    padding:24px 16px 64px;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;
+  }
+  button,input,select{font:inherit}
+  button:focus-visible,input:focus-visible,select:focus-visible{
+    outline:3px solid color-mix(in srgb,var(--focus) 45%,transparent);
+    outline-offset:2px;
+  }
+  .wrap{max-width:900px;margin:0 auto}
+  .brand{display:flex;justify-content:center;height:84px;margin:0 auto 12px;overflow:hidden}
+  .brand img{display:block;width:430px;max-width:68%;height:auto;object-fit:contain;align-self:center}
+  h1{font-size:clamp(1.7rem,4vw,2.35rem);line-height:1.15;margin:0 0 8px}
+  .sub{margin:0 0 22px;color:var(--muted);font-size:1.02rem}
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:16px;
+  }
+  .audio-panel{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end}
+  .field{display:flex;flex-direction:column;gap:7px}
+  label{font-size:.88rem;font-weight:700}
+  select,input{
+    width:100%;min-height:44px;padding:10px 12px;color:var(--ink);background:#fff;
+    border:1px solid var(--line);border-radius:9px;
+  }
+  .hint{margin:6px 0 0;color:var(--muted);font-size:.8rem}
+  .guide{border-left:5px solid var(--accent);background:var(--accent-soft)}
+  .guide p{margin:0}
+  .guide strong{color:var(--accent-dark)}
+  .counter{margin:26px 0 10px;color:var(--muted);font-size:.86rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .expressions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .expression-card{
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+    padding:18px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  .card-top{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+  .number{display:block;margin-bottom:4px;color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .phrase{margin:0;color:var(--ink);font-size:1.13rem;line-height:1.3;font-weight:800;overflow-wrap:anywhere}
+  .play-btn{
+    display:grid;place-items:center;flex:0 0 46px;width:46px;height:46px;padding:0;
+    border:0;border-radius:50%;color:#fff;background:var(--accent);cursor:pointer;
+    transition:transform .08s ease,background .15s ease;
+  }
+  .play-btn:hover,.play-btn.playing{background:var(--accent-dark)}
+  .play-btn:active{transform:scale(.94)}
+  .play-btn.playing{font-size:0}
+  .play-btn.playing::after{content:"■";font-size:.75rem}
+  .pronunciation-label{margin:5px 0 0;color:var(--muted);font-size:.76rem}
+  .explanation{margin-top:15px;padding-top:13px;border-top:1px solid var(--line)}
+  .label{display:block;margin-bottom:3px;color:var(--muted);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .translation,.meaning{margin:0;overflow-wrap:anywhere}
+  .translation{font-size:.91rem;color:#4f4d47}
+  .meaning{font-size:.97rem;font-weight:650}
+  .meaning-wrap{margin-top:11px}
+  .tag{align-self:flex-start;margin-top:13px;padding:4px 8px;border-radius:999px;background:var(--warning-soft);color:var(--warning);font-size:.72rem;font-weight:750}
+  .footer-note{margin:30px 0 0;color:var(--muted);font-size:.8rem;text-align:center}
+  .ownership{margin-top:18px;padding:14px 16px;border:1px solid #e2bcc0;border-radius:12px;background:var(--accent-soft);color:#6f171c;text-align:center}
+  .ownership strong{display:block;margin-bottom:3px}.ownership p{margin:0;font-size:.82rem}
+  @media(max-width:720px){
+    .expressions,.audio-panel{grid-template-columns:1fr}
+  }
+  @media(max-width:540px){
+    body{padding:18px 12px 48px}
+    .brand{height:64px}.brand img{max-width:78%}
+    .expression-card{padding:15px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand"><img src="../welcomehub-logo-transparent.png" alt="WelcomeHub"></div>
+  <h1><span aria-hidden="true">💬</span> Funny Romanian expressions</h1>
+  <p class="sub">Learn 50 popular expressions in the form you would naturally say them to another person.</p>
+
+  <section class="panel audio-panel" aria-label="Audio settings">
+    <div class="field">
+      <label for="voiceSelect">Romanian voice</label>
+      <select id="voiceSelect"><option value="Ioana (română (România))">Ioana (română (România)) — ro-RO (Romanian)</option><option value="Ioana (română (România))">Ioana (română (România)) — ro-RO (Romanian)</option></select>
+      <p class="hint">If several voices appear, choose the one that sounds clearest on your device. This changes the voice used by every red audio button.</p>
+    </div>
+    <div class="field">
+      <label for="rate">Audio speed: <span id="rateValue">0.85×</span></label>
+      <input id="rate" type="range" min="0.55" max="1.05" value="0.85" step="0.05">
+      <p class="hint">Use a slower speed while learning and a normal speed for practice.</p>
+    </div>
+  </section>
+
+  <section class="panel guide" aria-label="How to read the cards">
+    <p><strong>Literal translation</strong> shows the Romanian words directly in English, so it may sound strange. <strong>Actual meaning</strong> explains the message a Romanian speaker really intends.</p>
+  </section>
+
+  <p class="counter">50 expressions</p>
+  <section class="expressions" id="expressions" aria-label="Romanian expressions"></section>
+
+  <p class="footer-note">Audio pronunciation is generated by the Romanian voice installed on your device.</p>
+  <footer class="ownership"><strong>WelcomeHub</strong><p>Romanian language learning material</p></footer>
+</main>
+
+<script>
+(() => {
+  const expressions = [
+    {ro:"Freci menta", literal:"You rub the mint", meaning:"You are wasting time and doing nothing useful."},
+    {ro:"Mă scoți din pepeni", literal:"You take me out of my melons", meaning:"You are making me extremely angry."},
+    {ro:"Nu te îmbăta cu apă rece", literal:"Do not get drunk on cold water", meaning:"Do not fool yourself with unrealistic hopes."},
+    {ro:"Îmi pun mâna în foc pentru tine", literal:"I put my hand in the fire for you", meaning:"I trust you completely and confidently vouch for you."},
+    {ro:"Îți sare muștarul", literal:"Your mustard jumps", meaning:"You suddenly lose your temper."},
+    {ro:"Tai frunză la câini", literal:"You cut leaves for dogs", meaning:"You are wasting time doing something pointless or unproductive."},
+    {ro:"Dai apă la moară", literal:"You give water to the mill", meaning:"You are fuelling an argument, rumour or problem."},
+    {ro:"Faci din țânțar armăsar", literal:"You turn a mosquito into a stallion", meaning:"You are exaggerating a small problem and making it seem much bigger."},
+    {ro:"Bagă-ți mințile în cap", literal:"Put your brains into your head", meaning:"Become sensible, responsible and well behaved."},
+    {ro:"Umbli cu cioara vopsită", literal:"You walk around with a painted crow", meaning:"You are deceiving people by disguising the truth."},
+    {ro:"Vinzi gogoși", literal:"You sell doughnuts", meaning:"You are telling lies, inventing stories or making empty promises."},
+    {ro:"Ai dat cu bâta-n baltă", literal:"You hit the pond with the club", meaning:"You made an embarrassing mistake or said the wrong thing."},
+    {ro:"Ți-a tăiat frunza de la nas", literal:"Someone cut the leaf from under your nose", meaning:"Someone humbled you or cut you down to size."},
+    {ro:"Ai rămas cu ochii-n soare", literal:"You were left with your eyes in the sun", meaning:"You were deceived, disappointed or left with nothing."},
+    {ro:"Bați câmpii", literal:"You beat the fields", meaning:"You are talking nonsense or wandering completely off topic."},
+    {ro:"Ia-ți inima în dinți", literal:"Take your heart in your teeth", meaning:"Gather your courage and do the difficult thing."},
+    {ro:"M-ai tras pe sfoară", literal:"You pulled me onto the string", meaning:"You tricked, cheated or deceived me."},
+    {ro:"Ai mură-n gură", literal:"You have the blackberry in your mouth", meaning:"You have received everything ready-made, without making an effort."},
+    {ro:"Dai bir cu fugiții", literal:"You pay the tribute by running away", meaning:"You are running away from a duty, responsibility or difficult situation."},
+    {ro:"Îți faci mendrele", literal:"You do your whims", meaning:"You do whatever you want, ignoring rules or other people."},
+    {ro:"Cauți nod în papură", literal:"You look for a knot in a bulrush", meaning:"You are finding unnecessary faults or reasons to argue."},
+    {ro:"Pui paie pe foc", literal:"You put straw on the fire", meaning:"You are making an already tense situation worse."},
+    {ro:"Ai musca pe căciulă", literal:"You have the fly on your hat", meaning:"You are guilty of something and react defensively because you know it."},
+    {ro:"Mi-ai făcut capul calendar", literal:"You turned my head into a calendar", meaning:"You overwhelmed or annoyed me by talking too much."},
+    {ro:"Umbli după cai verzi pe pereți", literal:"You chase green horses on walls", meaning:"You are pursuing impossible, unrealistic or fantastical things."},
+    {ro:"Te iau la trei păzește", literal:"I take you at ‘three, watch out!’", meaning:"I question or scold you very severely."},
+    {ro:"Pui sare pe rană", literal:"You put salt on the wound", meaning:"You are making someone’s existing pain or distress worse."},
+    {ro:"Ți-ai dat arama pe față", literal:"You showed your brass on your face", meaning:"You revealed your true character, usually an unpleasant one."},
+    {ro:"Îți bagi nasul unde nu-ți fierbe oala", literal:"You stick your nose where your pot is not boiling", meaning:"You are interfering in a matter that is none of your business."},
+    {ro:"Ai dat-o în bară", literal:"You threw it into the bar", meaning:"You failed, made a mistake or messed something up."},
+    {ro:"Faci haz de necaz", literal:"You make laughter out of trouble", meaning:"You joke about a difficult situation in order to cope with it."},
+    {ro:"Pui umărul", literal:"You put your shoulder to it", meaning:"You help or contribute to a shared effort."},
+    {ro:"Ai rămas cu buzele umflate", literal:"You were left with swollen lips", meaning:"You are disappointed because you did not get what you expected."},
+    {ro:"Frecție la picior de lemn", literal:"A rub for a wooden leg", meaning:"A useless action or remedy that cannot improve anything."},
+    {ro:"Ești dus cu pluta", literal:"You are gone with the raft", meaning:"You are acting crazy, absent-minded or out of touch with reality.", tag:"Informal"},
+    {ro:"Ești tufă de Veneția", literal:"You are a bush from Venice", meaning:"You know nothing about the subject; you are completely clueless.", tag:"Humorous · informal"},
+    {ro:"Te uiți ca vițelul la poartă nouă", literal:"You look like a calf at a new gate", meaning:"You stare blankly because you are surprised or do not understand."},
+    {ro:"Faci din rahat bici", literal:"You make a whip out of shit", meaning:"You create something useful or impressive from very poor resources.", tag:"Vulgar"},
+    {ro:"Ai dat cu mucii în fasole", literal:"You put snot in the beans", meaning:"You ruined a good situation or made an embarrassing blunder.", tag:"Vulgar"},
+    {ro:"Ți-ai luat nasul la purtare", literal:"You let your nose get carried away", meaning:"You have become cheeky, arrogant or disrespectful."},
+    {ro:"Te spargi în figuri", literal:"You break yourself into poses", meaning:"You are showing off dramatically in order to impress others.", tag:"Informal"},
+    {ro:"Îmi faci ochi dulci", literal:"You make sweet eyes at me", meaning:"You are flirting with me or showing romantic interest."},
+    {ro:"Țara arde și tu te piepteni", literal:"The country is burning and you are combing your hair", meaning:"You are focusing on trivial things while a serious problem is unfolding."},
+    {ro:"La Paștele cailor", literal:"At the horses’ Easter", meaning:"Never; at a time that will never come."},
+    {ro:"Când o face plopul pere", literal:"When the poplar tree grows pears", meaning:"Never; when something impossible happens."},
+    {ro:"Ai dat ortul popii", literal:"You gave the coin to the priest", meaning:"You died. This expression is normally said about someone else, not directly to that person.", tag:"Old-fashioned · humorous"},
+    {ro:"Vrabia mălai visează", literal:"The sparrow dreams of cornmeal", meaning:"People dream most about the things they lack or strongly desire."},
+    {ro:"Te-am prins cu mâța-n sac", literal:"I caught you with the cat in the bag", meaning:"I caught you red-handed, with clear proof of your guilt."},
+    {ro:"Am ac de cojocul tău", literal:"I have a needle for your coat", meaning:"I know exactly how to handle, stop or punish you."},
+    {ro:"Te duci pe apa sâmbetei", literal:"You go down Saturday’s water", meaning:"You are going to ruin or disappearing for good."}
+  ];
+
+  const container = document.getElementById("expressions");
+  expressions.forEach((item, index) => {
+    const card = document.createElement("article");
+    card.className = "expression-card";
+    card.innerHTML = `
+      <div class="card-top">
+        <div>
+          <span class="number">Expression ${index + 1}</span>
+          <h2 class="phrase" lang="ro">${item.ro}</h2>
+          <p class="pronunciation-label">Romanian pronunciation</p>
+        </div>
+        <button class="play-btn" type="button" data-speak="${item.ro}" aria-label="Listen to the Romanian pronunciation of ${item.ro}">▶</button>
+      </div>
+      <div class="explanation">
+        <span class="label">Literal translation</span>
+        <p class="translation">${item.literal}</p>
+        <div class="meaning-wrap">
+          <span class="label">Actual meaning</span>
+          <p class="meaning">${item.meaning}</p>
+        </div>
+      </div>
+      ${item.tag ? `<span class="tag">${item.tag}</span>` : ""}`;
+    container.appendChild(card);
+  });
+
+  const voiceSelect = document.getElementById("voiceSelect");
+  const rate = document.getElementById("rate");
+  const rateValue = document.getElementById("rateValue");
+  let voices = [];
+  let activeButton = null;
+
+  function loadVoices(){
+    voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+    const romanian = voices.filter(voice => /^ro([-_]|$)/i.test(voice.lang));
+    const available = romanian.length ? romanian : voices;
+    voiceSelect.innerHTML = "";
+    if(!available.length){
+      voiceSelect.innerHTML = '<option value="">Default device voice</option>';
+      return;
+    }
+    available.forEach(voice => {
+      const option = document.createElement("option");
+      option.value = voice.name;
+      option.textContent = `${voice.name} — ${voice.lang}${romanian.includes(voice) ? " (Romanian)" : ""}`;
+      voiceSelect.appendChild(option);
+    });
+    const preferred = available.find(voice => /^ro([-_]|$)/i.test(voice.lang));
+    if(preferred) voiceSelect.value = preferred.name;
+  }
+
+  if("speechSynthesis" in window){
+    loadVoices();
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }else{
+    voiceSelect.innerHTML = "<option>Audio is not supported by this browser</option>";
+  }
+
+  rate.addEventListener("input", () => {
+    rateValue.textContent = `${Number(rate.value).toFixed(2)}×`;
+  });
+
+  function stopAudio(){
+    if("speechSynthesis" in window) speechSynthesis.cancel();
+    if(activeButton) activeButton.classList.remove("playing");
+    activeButton = null;
+  }
+
+  function speak(text, button){
+    if(!("speechSynthesis" in window)) return;
+    if(activeButton === button && speechSynthesis.speaking){
+      stopAudio();
+      return;
+    }
+    stopAudio();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "ro-RO";
+    utterance.rate = Number(rate.value);
+    const selected = voices.find(voice => voice.name === voiceSelect.value);
+    if(selected) utterance.voice = selected;
+    activeButton = button;
+    button.classList.add("playing");
+    utterance.onend = stopAudio;
+    utterance.onerror = stopAudio;
+    speechSynthesis.speak(utterance);
+  }
+
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-speak]");
+    if(button) speak(button.dataset.speak, button);
+  });
+})();
+</script>
+
+
+</body></html>
