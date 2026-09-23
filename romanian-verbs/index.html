@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn 50 essential Romanian verbs conjugated for every personal pronoun in the present, past and future, with audio pronunciation.">
+<title>Essential Romanian verbs</title>
+<style>
+  :root{
+    --bg:#f7f7f3;--ink:#20201d;--muted:#69675f;--line:#dedbd2;
+    --accent:#b9232a;--accent-dark:#8e1b20;--accent-soft:#fff0f0;
+    --card:#fff;--focus:#1b65b9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:24px 16px 64px;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+  button,input,select{font:inherit}
+  button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid color-mix(in srgb,var(--focus) 45%,transparent);outline-offset:2px}
+  .wrap{max-width:960px;margin:0 auto}
+  .brand{display:flex;justify-content:center;height:84px;margin:0 auto 12px;overflow:hidden}
+  .brand img{display:block;width:430px;max-width:68%;height:auto;object-fit:contain;align-self:center}
+  h1{font-size:clamp(1.7rem,4vw,2.35rem);line-height:1.15;margin:0 0 8px}
+  h2{font-size:1.15rem;line-height:1.3;margin:0}
+  .sub{margin:0 0 22px;color:var(--muted);font-size:1.02rem}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .audio-panel{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end}
+  .field{display:flex;flex-direction:column;gap:7px}
+  label{font-size:.88rem;font-weight:700}
+  select,input{width:100%;min-height:44px;padding:10px 12px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px}
+  .hint{margin:6px 0 0;color:var(--muted);font-size:.8rem}
+  .guide{border-left:5px solid var(--accent);background:var(--accent-soft)}
+  .guide p{margin:0}.guide strong{color:var(--accent-dark)}
+  .tense-panel{position:sticky;top:8px;z-index:5;padding:10px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px)}
+  .tense-label{display:block;margin:0 0 8px;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .tense-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:5px;border-radius:12px;background:#ebe8e1}
+  .tense-btn{min-height:46px;padding:8px;border:0;border-radius:9px;background:transparent;color:var(--ink);font-weight:750;cursor:pointer}
+  .tense-btn.active{color:#fff;background:var(--accent)}
+  .tense-btn small{display:block;font-size:.7rem;font-weight:600;opacity:.8}
+  .category{margin:28px 0 10px;font-size:1.08rem;color:var(--accent-dark)}
+  .category:first-child{margin-top:8px}
+  .verb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .verb-card{min-width:0;padding:17px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+  .verb-head{display:grid;grid-template-columns:1fr auto;align-items:start;gap:12px;padding-bottom:13px;border-bottom:1px solid var(--line)}
+  .verb-number{display:block;margin-bottom:3px;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+  .translation{margin:3px 0 0;color:var(--muted);font-size:.88rem}
+  .play-main,.play-form{display:grid;place-items:center;border:0;border-radius:50%;color:#fff;background:var(--accent);cursor:pointer;transition:transform .08s ease,background .15s ease}
+  .play-main{width:46px;height:46px;flex:0 0 46px}.play-form{width:34px;height:34px;flex:0 0 34px;font-size:.75rem}
+  .play-main:hover,.play-form:hover,.playing{background:var(--accent-dark)}
+  .play-main:active,.play-form:active{transform:scale(.94)}
+  .playing{font-size:0}.playing::after{content:"■";font-size:.7rem}
+  .tense-name{margin:12px 0 6px;color:var(--muted);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .forms{display:grid;gap:2px}
+  .form-row{display:grid;grid-template-columns:84px 1fr 34px;gap:8px;align-items:center;min-height:42px;padding:4px 0;border-bottom:1px solid #efede7}
+  .form-row:last-child{border-bottom:0}
+  .subject{color:var(--muted);font-size:.82rem;font-weight:700}
+  .subject small{font-size:.7rem;font-weight:500}
+  .form{font-weight:700;overflow-wrap:anywhere}
+  .note{margin:11px 0 0;padding:9px 10px;border-radius:8px;background:var(--accent-soft);color:#6f171c;font-size:.78rem}
+  .footer-note{margin:30px 0 0;color:var(--muted);font-size:.8rem;text-align:center}
+  .ownership{margin-top:18px;padding:14px 16px;border:1px solid #e2bcc0;border-radius:12px;background:var(--accent-soft);color:#6f171c;text-align:center}
+  .ownership strong{display:block;margin-bottom:3px}.ownership p{margin:0;font-size:.82rem}
+  @media(max-width:760px){.verb-grid,.audio-panel{grid-template-columns:1fr}.tense-panel{top:0}}
+  @media(max-width:540px){body{padding:18px 12px 48px}.brand{height:64px}.brand img{max-width:78%}.verb-card{padding:14px}.tense-btn{font-size:.84rem}.form-row{grid-template-columns:76px 1fr 34px}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand"><img src="../welcomehub-logo-transparent.png" alt="WelcomeHub"></div>
+  <h1><span aria-hidden="true">🔄</span> Essential Romanian verbs</h1>
+  <p class="sub">Learn 50 common verbs for every personal pronoun. Switch between the present, past and future, then listen to each form.</p>
+
+  <section class="panel audio-panel" aria-label="Audio settings">
+    <div class="field">
+      <label for="voiceSelect">Romanian voice</label>
+      <select id="voiceSelect"><option>Loading Romanian voices…</option></select>
+      <p class="hint">If several voices appear, choose the clearest one. This changes the voice used by every red audio button.</p>
+    </div>
+    <div class="field">
+      <label for="rate">Audio speed: <span id="rateValue">0.85×</span></label>
+      <input id="rate" type="range" min="0.55" max="1.05" value="0.85" step="0.05">
+      <p class="hint">Use a slower speed while learning and a normal speed for practice.</p>
+    </div>
+  </section>
+
+  <section class="panel guide">
+    <p><strong>Romanian often drops the subject pronoun.</strong> It is shown here to make the person clear. In everyday speech, Romanians usually say <em>merg</em>, not <em>eu merg</em>, when the context is obvious.</p>
+  </section>
+
+  <section class="panel tense-panel" aria-label="Choose a tense">
+    <span class="tense-label">Choose a tense</span>
+    <div class="tense-switch">
+      <button class="tense-btn active" type="button" data-tense="present" aria-pressed="true">Present<small>now / regularly</small></button>
+      <button class="tense-btn" type="button" data-tense="past" aria-pressed="false">Past<small>perfect compus</small></button>
+      <button class="tense-btn" type="button" data-tense="future" aria-pressed="false">Future<small>will</small></button>
+    </div>
+  </section>
+
+  <div id="verbSections"></div>
+
+  <p class="footer-note">Audio pronunciation is generated by the Romanian voice installed on your device.</p>
+  <footer class="ownership"><strong>WelcomeHub</strong><p>Romanian language learning material</p></footer>
+</main>
+
+<script>
+(() => {
+  const people = [
+    {ro:"eu",en:"I"},{ro:"tu",en:"you"},{ro:"el",en:"he"},{ro:"ea",en:"she"},
+    {ro:"noi",en:"we"},{ro:"voi",en:"you"},{ro:"ei",en:"they · masculine / mixed"},{ro:"ele",en:"they · feminine"}
+  ];
+  const pastAux = ["am","ai","a","am","ați","au"];
+  const futureAux = ["voi","vei","va","vom","veți","vor"];
+  const categories = [
+    {name:"Essential verbs",verbs:[
+      ["a fi","to be",["sunt","ești","este","suntem","sunteți","sunt"],"fost"],
+      ["a avea","to have",["am","ai","are","avem","aveți","au"],"avut"],
+      ["a face","to do; to make",["fac","faci","face","facem","faceți","fac"],"făcut"],
+      ["a merge","to go",["merg","mergi","merge","mergem","mergeți","merg"],"mers"],
+      ["a veni","to come",["vin","vii","vine","venim","veniți","vin"],"venit"],
+      ["a vrea","to want",["vreau","vrei","vrea","vrem","vreți","vor"],"vrut"],
+      ["a putea","to be able to; can",["pot","poți","poate","putem","puteți","pot"],"putut"],
+      ["a trebui","to have to; must",["trebuie","trebuie","trebuie","trebuie","trebuie","trebuie"],"trebuit",{note:"Often used with să + another verb: trebuie să plec = I have to leave."}],
+      ["a ști","to know",["știu","știi","știe","știm","știți","știu"],"știut"],
+      ["a spune","to say; to tell",["spun","spui","spune","spunem","spuneți","spun"],"spus"]
+    ]},
+    {name:"Communication",verbs:[
+      ["a vorbi","to speak",["vorbesc","vorbești","vorbește","vorbim","vorbiți","vorbesc"],"vorbit"],
+      ["a întreba","to ask",["întreb","întrebi","întreabă","întrebăm","întrebați","întreabă"],"întrebat"],
+      ["a răspunde","to answer",["răspund","răspunzi","răspunde","răspundem","răspundeți","răspund"],"răspuns"],
+      ["a asculta","to listen",["ascult","asculți","ascultă","ascultăm","ascultați","ascultă"],"ascultat"],
+      ["a citi","to read",["citesc","citești","citește","citim","citiți","citesc"],"citit"],
+      ["a scrie","to write",["scriu","scrii","scrie","scriem","scrieți","scriu"],"scris"],
+      ["a înțelege","to understand",["înțeleg","înțelegi","înțelege","înțelegem","înțelegeți","înțeleg"],"înțeles"],
+      ["a explica","to explain",["explic","explici","explică","explicăm","explicați","explică"],"explicat"]
+    ]},
+    {name:"Movement",verbs:[
+      ["a pleca","to leave",["plec","pleci","pleacă","plecăm","plecați","pleacă"],"plecat"],
+      ["a ajunge","to arrive; to reach",["ajung","ajungi","ajunge","ajungem","ajungeți","ajung"],"ajuns"],
+      ["a intra","to enter",["intru","intri","intră","intrăm","intrați","intră"],"intrat"],
+      ["a ieși","to exit; to go out",["ies","ieși","iese","ieșim","ieșiți","ies"],"ieșit"],
+      ["a sta","to stay; to stand",["stau","stai","stă","stăm","stați","stau"],"stat"],
+      ["a se întoarce","to return",["mă întorc","te întorci","se întoarce","ne întoarcem","vă întoarceți","se întorc"],"întors",{reflexive:"întoarce"}],
+      ["a alerga","to run",["alerg","alergi","aleargă","alergăm","alergați","aleargă"],"alergat"],
+      ["a călători","to travel",["călătoresc","călătorești","călătorește","călătorim","călătoriți","călătoresc"],"călătorit"]
+    ]},
+    {name:"Everyday life",verbs:[
+      ["a mânca","to eat",["mănânc","mănânci","mănâncă","mâncăm","mâncați","mănâncă"],"mâncat"],
+      ["a bea","to drink",["beau","bei","bea","bem","beți","beau"],"băut"],
+      ["a dormi","to sleep",["dorm","dormi","doarme","dormim","dormiți","dorm"],"dormit"],
+      ["a lucra","to work",["lucrez","lucrezi","lucrează","lucrăm","lucrați","lucrează"],"lucrat"],
+      ["a trăi","to live",["trăiesc","trăiești","trăiește","trăim","trăiți","trăiesc"],"trăit"],
+      ["a locui","to reside; to live somewhere",["locuiesc","locuiești","locuiește","locuim","locuiți","locuiesc"],"locuit"],
+      ["a cumpăra","to buy",["cumpăr","cumperi","cumpără","cumpărăm","cumpărați","cumpără"],"cumpărat"],
+      ["a vinde","to sell",["vând","vinzi","vinde","vindem","vindeți","vând"],"vândut"],
+      ["a plăti","to pay",["plătesc","plătești","plătește","plătim","plătiți","plătesc"],"plătit"],
+      ["a găti","to cook",["gătesc","gătești","gătește","gătim","gătiți","gătesc"],"gătit"]
+    ]},
+    {name:"Thoughts and emotions",verbs:[
+      ["a gândi","to think",["gândesc","gândești","gândește","gândim","gândiți","gândesc"],"gândit"],
+      ["a crede","to believe; to think",["cred","crezi","crede","credem","credeți","cred"],"crezut"],
+      ["a simți","to feel",["simt","simți","simte","simțim","simțiți","simt"],"simțit"],
+      ["a iubi","to love",["iubesc","iubești","iubește","iubim","iubiți","iubesc"],"iubit"],
+      ["a plăcea","to like",["îmi place","îți place","îi place","ne place","vă place","le place"],"plăcut",{special:"like",note:"Romanian expresses this as ‘it is pleasing to me’: îmi place = I like it."}],
+      ["a dori","to desire; to wish",["doresc","dorești","dorește","dorim","doriți","doresc"],"dorit"],
+      ["a uita","to forget",["uit","uiți","uită","uităm","uitați","uită"],"uitat"],
+      ["a-și aminti","to remember",["îmi amintesc","îți amintești","își amintește","ne amintim","vă amintiți","își amintesc"],"amintit",{reflexive:"aminti",possessive:true}]
+    ]},
+    {name:"General actions",verbs:[
+      ["a da","to give",["dau","dai","dă","dăm","dați","dau"],"dat"],
+      ["a lua","to take",["iau","iei","ia","luăm","luați","iau"],"luat"],
+      ["a pune","to put",["pun","pui","pune","punem","puneți","pun"],"pus"],
+      ["a vedea","to see",["văd","vezi","vede","vedem","vedeți","văd"],"văzut"],
+      ["a găsi","to find",["găsesc","găsești","găsește","găsim","găsiți","găsesc"],"găsit"],
+      ["a ajuta","to help",["ajut","ajuți","ajută","ajutăm","ajutați","ajută"],"ajutat"]
+    ]}
+  ];
+
+  const reflexivePast = ["m-am","te-ai","s-a","ne-am","v-ați","s-au"];
+  const reflexiveFuture = ["mă voi","te vei","se va","ne vom","vă veți","se vor"];
+  const possessivePast = ["mi-am","ți-ai","și-a","ne-am","v-ați","și-au"];
+  const possessiveFuture = ["îmi voi","îți vei","își va","ne vom","vă veți","își vor"];
+  const likePeople = [
+    {ro:"mie",en:"to me"},{ro:"ție",en:"to you"},{ro:"lui",en:"to him"},{ro:"ei",en:"to her"},
+    {ro:"nouă",en:"to us"},{ro:"vouă",en:"to you"},{ro:"lor",en:"to them · masculine / mixed"},{ro:"lor",en:"to them · feminine"}
+  ];
+
+  let currentTense = "present";
+  let verbNumber = 0;
+
+  function baseOf(infinitive){
+    return infinitive.replace(/^a(?:-și)?\s+/,"").replace(/^a\s+se\s+/,"");
+  }
+
+  function formsFor(verb, tense){
+    const [infinitive,,present,participle,options = {}] = verb;
+    if(tense === "present") return present;
+    if(options.special === "like"){
+      if(tense === "past") return ["mi-a plăcut","ți-a plăcut","i-a plăcut","ne-a plăcut","v-a plăcut","le-a plăcut"];
+      return ["îmi va plăcea","îți va plăcea","îi va plăcea","ne va plăcea","vă va plăcea","le va plăcea"];
+    }
+    if(options.reflexive){
+      const prefixes = tense === "past" ? (options.possessive ? possessivePast : reflexivePast) : (options.possessive ? possessiveFuture : reflexiveFuture);
+      const ending = tense === "past" ? participle : options.reflexive;
+      return prefixes.map(prefix => `${prefix} ${ending}`);
+    }
+    if(tense === "past") return pastAux.map(aux => `${aux} ${participle}`);
+    const base = baseOf(infinitive);
+    return futureAux.map(aux => `${aux} ${base}`);
+  }
+
+  function tenseTitle(){
+    return currentTense === "present" ? "Present" : currentTense === "past" ? "Past · perfect compus" : "Future";
+  }
+
+  function separateGenderForms(forms){
+    return [forms[0],forms[1],forms[2],forms[2],forms[3],forms[4],forms[5],forms[5]];
+  }
+
+  function render(){
+    const root = document.getElementById("verbSections");
+    root.innerHTML = "";
+    verbNumber = 0;
+    categories.forEach(category => {
+      const section = document.createElement("section");
+      const title = document.createElement("h2");
+      title.className = "category";
+      title.textContent = category.name;
+      const grid = document.createElement("div");
+      grid.className = "verb-grid";
+      category.verbs.forEach(verb => {
+        verbNumber += 1;
+        const [infinitive,english,,,options = {}] = verb;
+        const forms = separateGenderForms(formsFor(verb,currentTense));
+        const subjects = options.special === "like" ? likePeople : people;
+        const card = document.createElement("article");
+        card.className = "verb-card";
+        const rows = forms.map((form,index) => {
+          const spoken = `${subjects[index].ro} ${form}`;
+          return `<div class="form-row"><span class="subject">${subjects[index].ro}<br><small>${subjects[index].en}</small></span><span class="form" lang="ro">${form}</span><button class="play-form" type="button" data-speak="${spoken}" aria-label="Listen to ${spoken}">▶</button></div>`;
+        }).join("");
+        card.innerHTML = `<div class="verb-head"><div><span class="verb-number">Verb ${verbNumber}</span><h2 lang="ro">${infinitive}</h2><p class="translation">${english}</p></div><button class="play-main" type="button" data-speak="${infinitive}" aria-label="Listen to ${infinitive}">▶</button></div><p class="tense-name">${tenseTitle()}</p><div class="forms">${rows}</div>${options.note ? `<p class="note">${options.note}</p>` : ""}`;
+        grid.appendChild(card);
+      });
+      section.append(title,grid);
+      root.appendChild(section);
+    });
+  }
+
+  document.querySelectorAll("[data-tense]").forEach(button => {
+    button.addEventListener("click",() => {
+      currentTense = button.dataset.tense;
+      document.querySelectorAll("[data-tense]").forEach(item => {
+        const active = item === button;
+        item.classList.toggle("active",active);
+        item.setAttribute("aria-pressed",String(active));
+      });
+      stopAudio();
+      render();
+    });
+  });
+
+  const voiceSelect = document.getElementById("voiceSelect");
+  const rate = document.getElementById("rate");
+  const rateValue = document.getElementById("rateValue");
+  let voices = [];
+  let activeButton = null;
+
+  function loadVoices(){
+    voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+    const romanian = voices.filter(voice => /^ro([-_]|$)/i.test(voice.lang));
+    const available = romanian.length ? romanian : voices;
+    voiceSelect.innerHTML = "";
+    if(!available.length){voiceSelect.innerHTML = '<option value="">Default device voice</option>';return;}
+    available.forEach(voice => {
+      const option = document.createElement("option");
+      option.value = voice.name;
+      option.textContent = `${voice.name} — ${voice.lang}${romanian.includes(voice) ? " (Romanian)" : ""}`;
+      voiceSelect.appendChild(option);
+    });
+    const preferred = available.find(voice => /^ro([-_]|$)/i.test(voice.lang));
+    if(preferred) voiceSelect.value = preferred.name;
+  }
+
+  function stopAudio(){
+    if("speechSynthesis" in window) speechSynthesis.cancel();
+    if(activeButton) activeButton.classList.remove("playing");
+    activeButton = null;
+  }
+
+  function speak(text,button){
+    if(!("speechSynthesis" in window)) return;
+    if(activeButton === button && speechSynthesis.speaking){stopAudio();return;}
+    stopAudio();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "ro-RO";
+    utterance.rate = Number(rate.value);
+    const selected = voices.find(voice => voice.name === voiceSelect.value);
+    if(selected) utterance.voice = selected;
+    activeButton = button;
+    button.classList.add("playing");
+    utterance.onend = stopAudio;
+    utterance.onerror = stopAudio;
+    speechSynthesis.speak(utterance);
+  }
+
+  if("speechSynthesis" in window){loadVoices();speechSynthesis.onvoiceschanged = loadVoices;}
+  else{voiceSelect.innerHTML = "<option>Audio is not supported by this browser</option>";}
+  rate.addEventListener("input",() => rateValue.textContent = `${Number(rate.value).toFixed(2)}×`);
+  document.addEventListener("click",event => {const button = event.target.closest("[data-speak]");if(button) speak(button.dataset.speak,button);});
+  render();
+})();
+</script>
+</body>
+</html>
